@@ -54,7 +54,7 @@ InModuleScope "ProfileCaddy" {
         Mock Force-ResolvePath { return $pscaddyGists } -ParameterFilter { $Path -eq "~/.pscaddy/gists.json" }
 
         Context "Gists" {
-            It "List should be empty if list is blank or non-existant" {
+            It "List should return 0 objects if list is blank or non-existant" {
                 (List).Count | Should BeExactly 0
             }
             It "Returns the correct single object from the list" {

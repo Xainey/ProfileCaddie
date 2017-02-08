@@ -1,5 +1,10 @@
 function Init
 {
+    [cmdletbinding()]
+    param(
+        [switch] $Force = $false
+    )
+
     # Creates `$Profile if it doesnt exist
     if (!(Test-Path -Path $profile))
     {
@@ -8,6 +13,13 @@ function Init
 
     # Creates ~/.pscaddy if it doesnt exist
     $pscaddy = Force-ResolvePath "~/.pscaddy"
+
+    if($Force)
+    {
+        Remove-Item -Path $pscaddy -Recurse -Force
+    }
+
+
     if (!(Test-Path -Path $pscaddy))
     {
         New-Item -Path $pscaddy -ItemType Container

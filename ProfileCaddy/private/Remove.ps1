@@ -2,8 +2,13 @@ function Remove
 {
     [cmdletbinding()]
     param(
-        [string] $id
+        [string] $Id
     )
+
+    if($Id -eq $null -or $Id -eq "")
+    {
+        throw ("Must provide a gist ID to remove. View All with -List.")
+    }
 
     $gists = Force-ResolvePath "~/.pscaddy/gists.json"
 
@@ -13,7 +18,7 @@ function Remove
     }
 
 
-    $json = $list | Sort-Object -Property id, sha -Unique | Where-Object { $_.id –ne $id } | ConvertTo-Json
+    $json = $list | Sort-Object -Property id, sha -Unique | Where-Object { $_.id -ne $id } | ConvertTo-Json
 
     $json | Out-File -FilePath $gists -Force
 }
