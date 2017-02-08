@@ -1,5 +1,6 @@
 function Make
 {
+    # Collect all Raw gists and make file
     $Output = $null
     foreach($item in List)
     {
@@ -8,19 +9,20 @@ function Make
         $Output += (Invoke-WebRequest $uri).Content
         $Output += "`n`n"
     }
-
-    $makeProfile = Force-ResolvePath "~/.pscaddy/Profile.ps1"
+    $psCaddy = Force-ResolvePath "~/.pscaddy"
+    $makeProfile = Join-Path $psCaddy "Profile.ps1"
     $Output | Out-File -FilePath $makeProfile -Force
 
+    # Insert Marker into profile to dot source "~/.pscaddy/Profile.ps1"
     $marker = "# Load ProfileCaddy Generated Profile (Do Not Modify)"
-
-    if((Select-String -Path $profile -Pattern $marker).count -eq 0)
+    $profilePath = (Get-ProfilePath -Name CurrentUserCurrentHost)
+    if((Select-String -Path $profilePath -Pattern $marker).count -eq 0)
     {
         $userProfile = $marker
         $userProfile += "`n"
         $userProfile += '$ProfileCaddy = "~/.pscaddy/profile.ps1"; if(Test-Path(Resolve-Path $ProfileCaddy -ErrorAction SilentlyContinue)){. $ProfileCaddy}'
         $userProfile += "`n`n"
-        $userProfile += (Get-Content $profile | Out-String)
-        $userProfile | Out-File -FilePath $profile -Force
+        $userProfile += (Get-Content $profilePath | Out-String)
+        $userProfile | Out-File -FilePath $profilePath -Force
     }
 }
