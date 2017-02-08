@@ -4,6 +4,7 @@ function Init
     param(
         [switch] $Force = $false
     )
+
     # Creates ~/.pscaddy if it doesnt exist
     $pscaddy = Force-ResolvePath "~/.pscaddy"
     if($Force)
@@ -29,7 +30,7 @@ function Init
         New-Item -Path $gists -ItemType File
     }
 
-    # Creates `$Profile if it doesnt exist
+    # Creates $Profile if it doesnt exist
     $profilePath = (Get-ProfilePath -Name CurrentUserCurrentHost)
     if (!(Test-Path -Path $profilePath))
     {

@@ -11,9 +11,9 @@ Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 
 InModuleScope "ProfileCaddy" {
     Describe "Private/Help" {
-        Context "..." {
-            It "..." {
-
+        Context "Help" {
+            It "Gets the Help Docs" {
+                {Help} | Should Not Throw
             }
         }
     }

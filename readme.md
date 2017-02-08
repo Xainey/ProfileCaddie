@@ -14,6 +14,7 @@ Invoke-Caddy -Help
 
 ```powershell
 Invoke-Caddy -Init
+Invoke-Caddy -Init -Force # Clean and Init ~/.pscaddy/*
 ```
 
 `-Add` : Add a raw gist url

@@ -1,5 +1,4 @@
 function Help()
 {
-    #TODO:
-    "Get-Help | Module"
+    Get-Help about_ProfileCaddy
 }

@@ -10,9 +10,9 @@ $here = $here -replace 'tests', 'ProfileCaddy'
 Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 
 InModuleScope "ProfileCaddy" {
-    Describe "Private/ParseGist" {
+    Describe "Private/Get-ProfilePath" {
         Context "..." {
-            It "Should parse a raw gist url" {
+            It "..." {
 
             }
         }
