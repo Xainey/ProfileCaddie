@@ -5,19 +5,20 @@ function ParseGist
         [string] $Uri
     )
 
+    # May want to restrict to only .ps1 Files
     $regex = [regex] "https:\/\/gist.githubusercontent.com\/(\w+)\/([a-f0-9]+)\/raw\/([a-f0-9]{40})\/([^/\n]*)$"
 
-    if (!($uri -match $regex))
+    if (!$regex.IsMatch($Uri))
     {
-        return $true
+        throw "Invalid Gist Uri."
     }
 
-    $s = $Uri -split '/'
+    $matches = $regex.Match($Uri)
 
     return $gist = [PSCustomObject]@{
-        'user' = $s[3]
-        'file' = $s[7]
-        'id'   = $s[4]
-        'sha'  = $s[6]
+        'user' = $matches.Groups[1].Value
+        'id'   = $matches.Groups[2].Value
+        'sha'  = $matches.Groups[3].Value
+        'file' = $matches.Groups[4].Value
     }
 }
