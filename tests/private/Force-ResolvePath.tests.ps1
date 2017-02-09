@@ -11,9 +11,9 @@ Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 
 InModuleScope "ProfileCaddy" {
     Describe "Private/Force-ResolvePath" {
-        Context "..." {
-            It "..." {
-
+        Context "Non-Existant Path" {
+            It "It does not thow if the path does not exist" {
+                { Force-ResolvePath "~/.example/does/not/exist.ps1" } | Should Not Throw
             }
         }
     }
