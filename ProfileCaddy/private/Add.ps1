@@ -9,10 +9,8 @@ function Add
     $psCaddy = Force-ResolvePath "~/.pscaddy"
 
     $gists = Join-Path $psCaddy "gists.json"
-    if ((Test-Path -Path $gists))
-    {
-        [System.Array] $list = (Get-Content -Path $gists) | ConvertFrom-Json
-    }
+
+    [System.Array] $list = List
 
     $list += ParseGist $Uri
 

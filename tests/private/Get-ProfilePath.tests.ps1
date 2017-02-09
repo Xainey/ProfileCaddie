@@ -11,7 +11,7 @@ Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 
 InModuleScope "ProfileCaddy" {
     Describe "Private/Get-ProfilePath" {
-        Context "..." {
+        Context "Returns a list or string" {
             It "returns a string if profile is requested by name" {
                 (Get-ProfilePath -Name AllUsersAllHosts) | Should BeOfType String
                 (Get-ProfilePath -Name AllUsersCurrentHost) | Should BeOfType String

@@ -1,10 +1,30 @@
 function List
 {
-    $gists = Force-ResolvePath "~/.pscaddy/gists.json"
+    [cmdletbinding(DefaultParameterSetName="File")]
+    param(
+        [Parameter(Mandatory=$False, ParameterSetName="Gist")]
+        [switch] $Gist,
 
-    if ((Test-Path -Path $gists))
+        [Parameter(Mandatory=$False, ParameterSetName="File")]
+        [switch] $File,
+
+        [Parameter(Mandatory=$False, ParameterSetName="File", Position=0)]
+        [Parameter(Mandatory=$True, ParameterSetName="Gist", Position=0)]
+        [string] $Path = (Force-ResolvePath "~/.pscaddy/gists.json")
+    )
+
+    if($PsCmdlet.ParameterSetName -eq "File")
     {
-        [System.Array] $list = (Get-Content -Path $gists) | ConvertFrom-Json
+        if ((Test-Path -Path $Path))
+        {
+            [System.Array] $list = (Get-Content -Path $Path) | ConvertFrom-Json
+        }
+    }
+    else
+    {
+        $pieces = (ParseGist -Uri $Path)
+        $content = (Invoke-WebRequest $Path).Content
+        [System.Array] $list = $content | ConvertFrom-Json
     }
 
     return $list

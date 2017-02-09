@@ -58,12 +58,12 @@ InModuleScope "ProfileCaddy" {
                 (List).Count | Should BeExactly 0
             }
             It "Returns the correct single object from the list" {
-                Init
+                Init -Force
                 Add -Uri $gist1
                 (List | ConvertTo-Json) | Should be ($gists[0] | ConvertTo-Json)
             }
             It "Returns the correct multiple objects from the list" {
-                Init
+                Init -Force
                 Add -Uri $gist1
                 Add -Uri $gist2
                 (List | ConvertTo-Json) | Should be ($gists | ConvertTo-Json)

@@ -11,7 +11,7 @@ Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 
 InModuleScope "ProfileCaddy" {
     Describe "Private/Make" {
-        Context "..." {
+        Context "Create a Profile from Gists" {
             Mock Force-ResolvePath { return "TestDrive:\.pscaddy" } -ParameterFilter { $Path -eq "~/.pscaddy" }
             Mock Get-ProfilePath { return "TestDrive:\.pscaddy\PowerShellProfile.ps1" }
 
