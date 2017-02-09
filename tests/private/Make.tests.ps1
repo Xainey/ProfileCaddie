@@ -23,9 +23,9 @@ InModuleScope "ProfileCaddy" {
             It "Generates a Profile" {
                 "TestDrive:\.pscaddy\Profile.ps1" | Should Exist
             }
-            It 'Adds a marker to `$Profile if missing' {
+            It "Adds a marker to `$Profile if missing" {
                 $marker = "ProfileCaddy Generated Profile"
-                (Select-String -Path (Get-ProfilePath) -Pattern $marker).count | Should Be 1
+                Get-ProfilePath | Should ContainExactly $marker
             }
         }
     }

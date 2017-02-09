@@ -39,15 +39,15 @@ InModuleScope "ProfileCaddy" {
         $gists = @(
             [PSCustomObject]@{
                 "user" =  "Xainey"
-                "file" =  "export.ps1"
                 "id"   = "a8793a62dcb6d613bf0482ee6deec36f"
                 "sha"  = "f965f317fe4c13cc7224484d7494e7e1c9334b38"
+                "file" =  "export.ps1"
             },
             [PSCustomObject]@{
                 "user" =  "Xainey"
-                "file" =  "touch.ps1"
                 "id"   = "bc4e497435b440f6699a4f778c89a0c5"
                 "sha"  = "cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68"
+                "file" =  "touch.ps1"
             }
         )
 
