@@ -27,15 +27,15 @@ InModuleScope "ProfileCaddy" {
             }
         )
 
-        Context "..." {
+        Context "Imports Gists from File or Github" {
             Mock List { return $gists } -ParameterFilter {$Gist -eq $True -and $Path -eq $Path} -Verifiable
             Mock List { return $gists } -ParameterFilter {$File -eq $True -and $Path -eq $Path} -Verifiable
-            It "loads json from github gist" {
+            It "Loads json from github gist" {
                 Mock Add {}
                 { Import -Gist "Test.json" } | Should Not Throw
                 Assert-MockCalled Add -Times 2
             }
-            It "loads json from local system" {
+            It "Loads json from local system" {
                 Mock Add {}
                 { Import -File "Test.json" } | Should Not Throw
                 Assert-MockCalled Add -Times 2

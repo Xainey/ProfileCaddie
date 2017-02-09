@@ -60,15 +60,15 @@ InModuleScope "ProfileCaddy" {
         Add -Uri $gist3
 
         Context "Removing Gists" {
-            It "removes items by id" {
+            It "Removes items by id" {
                 Remove -Id "70caeb4f7d61f25db22bc07fb9e45264"
                 (List | ConvertTo-Json) | Should be ($gists | ConvertTo-Json)
                 (List).Count | Should BeExactly 2
             }
-            It "does not throw if ID is not found" {
+            It "Does not throw if ID is not found" {
                 { Remove -Id "NON_EXISTENT_ID" } | Should Not Throw
             }
-            It "throws if ID is `$null or blank" {
+            It "Throws if ID is `$null or blank" {
                 { Remove -Id $null } | Should Throw
                 { Remove } | Should Throw
             }

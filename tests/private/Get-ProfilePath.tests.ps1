@@ -12,13 +12,13 @@ Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 InModuleScope "ProfileCaddy" {
     Describe "Private/Get-ProfilePath" {
         Context "Returns a list or string" {
-            It "returns a string if profile is requested by name" {
+            It "Returns a string if profile is requested by name" {
                 (Get-ProfilePath -Name AllUsersAllHosts) | Should BeOfType String
                 (Get-ProfilePath -Name AllUsersCurrentHost) | Should BeOfType String
                 (Get-ProfilePath -Name CurrentUserAllHosts) | Should BeOfType String
                 (Get-ProfilePath -Name CurrentUserCurrentHost) | Should BeOfType String
             }
-            It "returns a PSCustomObject List of all Profiles if `$Name is not included" {
+            It "Returns a PSCustomObject List of all Profiles if `$Name is not included" {
                 (Get-ProfilePath) | Should BeOfType PSCustomObject
             }
         }

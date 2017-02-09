@@ -13,7 +13,7 @@ InModuleScope "ProfileCaddy" {
     Describe "Private/Help" {
         Context "Help" {
             It "Gets the Help Docs" {
-                {Help} | Should Not Throw
+                { Help } | Should Not Throw
             }
         }
     }

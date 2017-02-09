@@ -60,13 +60,13 @@ InModuleScope "ProfileCaddy" {
             It "Returns the correct single object from the list" {
                 Init -Force
                 Add -Uri $gist1
-                (List | ConvertTo-Json) | Should be ($gists[0] | ConvertTo-Json)
+                (List | ConvertTo-Json) | Should Be ($gists[0] | ConvertTo-Json)
             }
             It "Returns the correct multiple objects from the list" {
                 Init -Force
                 Add -Uri $gist1
                 Add -Uri $gist2
-                (List | ConvertTo-Json) | Should be ($gists | ConvertTo-Json)
+                (List | ConvertTo-Json) | Should Be ($gists | ConvertTo-Json)
             }
         }
     }

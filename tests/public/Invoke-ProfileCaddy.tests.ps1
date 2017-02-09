@@ -12,8 +12,8 @@ Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
 InModuleScope "ProfileCaddy" {
     Describe "Public/Invoke-ProfileCaddy" {
         Context "Help" {
-            It "gets the docs" {
-                {Invoke-ProfileCaddy -Help } | Should Not Throw
+            It "Gets the docs" {
+                { Invoke-ProfileCaddy -Help } | Should Not Throw
             }
         }
     }
