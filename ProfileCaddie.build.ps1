@@ -160,16 +160,30 @@ task Archive {
 
 # Synopsis: Publish to SMB File Share
 task Publish {
-    if($ENV:BHProjectName -and $ENV:BHProjectName.Count -eq 1)
+    if(!$ENV:BHProjectName -and $ENV:BHProjectName.Count -ne 1)
     {
-        Deploy Module {
-            By PSGalleryModule {
-                FromSource $ENV:BHProjectName
-                To PSGallery
-                WithOptions @{
-                    ApiKey = $ENV:NugetApiKey
-                }
-            }
+        throw '$ENV:BHProjectName not set'
+    }
+
+    # Credit From: https://github.com/RamblingCookieMonster/PSDepend/blob/fb5cbe8372453d8e355dd63edad3ecd38a8697a3/psake.ps1#L73
+    if(
+        $ENV:BHBuildSystem -ne 'Unknown' -and
+        $ENV:BHBranchName -eq "master" -and
+        $ENV:BHCommitMessage -match '!deploy'
+    )
+    {
+        $Params = @{
+            Path = $Settings.ProjectRoot
+            Force = $true
         }
+
+        Invoke-PSDeploy @Params
+    }
+    else
+    {
+        "Skipping deployment: To deploy, ensure that...`n" +
+        "`t* You are in a known build system (Current: $ENV:BHBuildSystem)`n" +
+        "`t* You are committing to the master branch (Current: $ENV:BHBranchName) `n" +
+        "`t* Your commit message includes !deploy (Current: $ENV:BHCommitMessage)"
     }
 }

@@ -6,7 +6,7 @@ param(
     $ModuleName = 'ProfileCaddie',
     $ModulePath = './ProfileCaddie',
     $BuildNumber = $env:BUILD_NUMBER,
-    $UseNextPSGalleryVersion = $false
+    $UseNextPSGalleryVersion = $false,
     $PercentCompliance  = '0'
 )
 
@@ -27,7 +27,7 @@ Enter-Build {
         ProjectUrl = "https://github.com/Xainey/ProfileCaddie"
         Repository = "https://github.com/Xainey/ProfileCaddie.git"
         PackageDescription = "Use github gists to manage and share your PowerShell profile."
-        Tags = "profile","gist"
+        Tags = "profile,gist,github"
         GitRepo = "Xainey/ProfileCaddie"
         CIUrl = "http://appveyor.com/"
         Timestamp = Get-Date -uformat "%Y%m%d-%H%M%S"
