@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    List all of the Gists added to profile.
+#>
 function List
 {
     [cmdletbinding(DefaultParameterSetName="File")]

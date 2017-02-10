@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    Generate a new ProfileCaddy Profile.ps1 and inject it into $Profile.
+#>
 function Make
 {
     # Collect all Raw gists and make file

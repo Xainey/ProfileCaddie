@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    Remove a Gist from Profile.
+#>
 function Remove
 {
     [cmdletbinding()]

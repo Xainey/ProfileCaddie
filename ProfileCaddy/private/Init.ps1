@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    Create or refresh ProfileCaddy config.
+#>
 function Init
 {
     [cmdletbinding()]

@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    Import a gist url or local json file into ProfileCaddy.
+#>
 function Import
 {
     [cmdletbinding(DefaultParameterSetName="File")]

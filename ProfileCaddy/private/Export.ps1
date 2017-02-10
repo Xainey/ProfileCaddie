@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    Export a Copy of gists.json.
+#>
 function Export
 {
     [cmdletbinding()]

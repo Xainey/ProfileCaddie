@@ -1,3 +1,7 @@
+<#
+.Synopsis
+    Add a Raw Gist url to ProfileCaddy.
+#>
 function Add
 {
     [cmdletbinding()]
