@@ -1,8 +1,8 @@
 # Include: Settings
 . './ProfileCaddie.settings.ps1'
 
-# Include: build_utils
-#. './build_utils.ps1'
+# Include: build.utils
+. './build.utils.ps1'
 
 # Synopsis: Run/Publish Tests and Fail Build on Error
 task Test RunTests, ConfirmTestsPassed
@@ -18,12 +18,18 @@ Task Init {
 
 # Synopsis: Install Build Dependencies
 task InstallDependencies {
-    # Cant run an Invoke-Build Task without Invoke-Build.
-    Install-Module -Name InvokeBuild -Force
+    # Cant run an Invoke-Build Task without Invoke-Build (Can Force to keep it up to date).
+    # Install-Module -Name InvokeBuild -Force
+
+    # May need this
+    # Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
+    # Install-Nuget
 
     Install-Module -Name DscResourceTestHelper -Force
     Install-Module -Name Pester -Force
     Install-Module -Name PSScriptAnalyzer -Force
+    Install-Module -Name PSDeploy -Force
+    Install-Module -Name BuildHelpers -Force
 }
 
 # Synopsis: Clean Artifacts Directory
@@ -132,7 +138,7 @@ task Archive {
         BuildNumber = $BuildNumber
     }
 
-    # Publish-ArtifactZip @moduleInfo
+    Publish-ArtifactZip @moduleInfo
 
     $nuspecInfo = @{
         packageName = $ModuleName
@@ -146,18 +152,21 @@ task Archive {
         BuildNumber = $BuildNumber
     }
 
-    # Publish-NugetPackage @nuspecInfo
+    Publish-NugetPackage @nuspecInfo
 }
 
 # Synopsis: Publish to SMB File Share
 task Publish {
-    $moduleInfo = @{
-        RepoName = $Settings.SMBRepoName
-        RepoPath = $Settings.SMBRepoPath
-        ModuleName = $ModuleName
-        ModulePath = "$ModulePath\$ModuleName.psd1"
-        BuildNumber = $BuildNumber
+    if($ENV:BHProjectName -and $ENV:BHProjectName.Count -eq 1)
+    {
+        Deploy Module {
+            By PSGalleryModule {
+                FromSource $ENV:BHProjectName
+                To PSGallery
+                WithOptions @{
+                    ApiKey = $ENV:NugetApiKey
+                }
+            }
+        }
     }
-
-    # Publish-SMBModule @moduleInfo -Verbose
 }

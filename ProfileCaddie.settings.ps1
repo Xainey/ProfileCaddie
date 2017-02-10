@@ -14,21 +14,21 @@ param(
 ###############################################################################
 
 Enter-Build {
+    # Skip Setup if Installing Dependencies
+    if($BuildTask -eq 'InstallDependencies') { return }
+
     Set-BuildEnvironment
 
     $Settings = @{
-        Author =  "Michael Willis"
+        Author = "Michael Willis"
         Owners = "Michael Willis"
-        LicenseUrl = 'https://github.com/Xainey/ProfileCaddie/blob/master/LICENSE'
+        LicenseUrl = "https://github.com/Xainey/ProfileCaddie/blob/master/LICENSE"
         ProjectUrl = "https://github.com/Xainey/ProfileCaddie"
+        Repository = "https://github.com/Xainey/ProfileCaddie.git"
         PackageDescription = "Use github gists to manage and share your PowerShell profile."
-        Repository = 'https://github.com/Xainey/ProfileCaddie.git'
-        Tags = ""
-
-        # TODO: fix any redudant naming
-        GitRepo = "Xainey/PSHitchhiker"
+        Tags = "profile","gist"
+        GitRepo = "Xainey/ProfileCaddie"
         CIUrl = "http://appveyor.com/"
-
         Timestamp = Get-Date -uformat "%Y%m%d-%H%M%S"
         PSVersion = $PSVersionTable.PSVersion.Major
         ProjectRoot = $PSScriptRoot
