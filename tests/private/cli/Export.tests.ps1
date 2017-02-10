@@ -10,7 +10,7 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/Export" {
+    Describe "Private/cli/Export" {
         Context "Basic Export" {
             It "Copies the gist.json file to target path" {
                 Mock Copy-Item {} -Verifiable

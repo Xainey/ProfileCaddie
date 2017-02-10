@@ -10,7 +10,7 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/Help" {
+    Describe "Private/cli/Help" {
         Context "Help" {
             It "Gets the Help Docs" {
                 { Help } | Should Not Throw

@@ -10,7 +10,7 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/Make" {
+    Describe "Private/cli/Make" {
         Context "Create a Profile from Gists" {
             Mock Resolve-UncertainPath { return "TestDrive:\.pscaddie" } -ParameterFilter { $Path -eq "~/.pscaddie" }
             Mock Get-ProfilePath { return "TestDrive:\.pscaddie\PowerShellProfile.ps1" }

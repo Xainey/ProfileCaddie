@@ -27,15 +27,16 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/List" {
+    Describe "Private/cli/Remove" {
 
         $pscaddie = "TestDrive:\.pscaddie"
         $pscaddieGists = "TestDrive:\.pscaddie\gists.json"
 
         $gist1 = "https://gist.githubusercontent.com/Xainey/a8793a62dcb6d613bf0482ee6deec36f/raw/f965f317fe4c13cc7224484d7494e7e1c9334b38/export.ps1"
         $gist2 = "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/touch.ps1"
+        $gist3 = "https://gist.githubusercontent.com/Xainey/70caeb4f7d61f25db22bc07fb9e45264/raw/7f4307dca14c56d7260feca029600ca92fd507d3/Send-WakeOnLan.ps1"
 
-        $localGists = @(
+        $gists = @(
             [PSCustomObject]@{
                 "user" =  "Xainey"
                 "id"   = "a8793a62dcb6d613bf0482ee6deec36f"
@@ -50,42 +51,26 @@ InModuleScope "ProfileCaddie" {
             }
         )
 
-        $githubGist = "https://gist.githubusercontent.com/Xainey/a8793a62dcb6d613bf0482ee6deec36f/raw/f965f317fe4c13cc7224484d7494e7e1c9334b38/profilecaddie.json"
-
-        $githubGists = @(
-            [PSCustomObject]@{
-                "user" =  "Xainey"
-                "id"   = "a8793a62dcb6d613bf0482ee6deec36f"
-                "sha"  = "f965f317fe4c13cc7224484d7494e7e1c9334b38"
-                "file" =  "profilecaddie.json"
-            }
-        )
-
         Mock Resolve-UncertainPath { return $pscaddie } -ParameterFilter { $Path -eq "~/.pscaddie" }
         Mock Resolve-UncertainPath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
 
-        Context "Local Json" {
-            It "List should return 0 objects if list is blank or non-existant" {
-                (List).Count | Should BeExactly 0
+        Init
+        Add -Uri $gist1
+        Add -Uri $gist2
+        Add -Uri $gist3
+
+        Context "Removing Gists" {
+            It "Removes items by id" {
+                Remove -Id "70caeb4f7d61f25db22bc07fb9e45264"
+                (List | ConvertTo-Json) | Should be ($gists | ConvertTo-Json)
+                (List).Count | Should BeExactly 2
             }
-            It "Returns the correct single object from the list" {
-                Init -Force
-                Add -Uri $gist1
-                (List | ConvertTo-Json) | Should Be ($localGists[0] | ConvertTo-Json)
+            It "Does not throw if ID is not found" {
+                { Remove -Id "NON_EXISTENT_ID" } | Should Not Throw
             }
-            It "Returns the correct multiple objects from the list" {
-                Init -Force
-                Add -Uri $gist1
-                Add -Uri $gist2
-                (List | ConvertTo-Json) | Should Be ($localGists | ConvertTo-Json)
-            }
-        }
-        Context "Github Gist Json" {
-            It "Returns a list gist json" {
-                $json = ($githubGists[0] | ConvertTo-Json -Compress)
-                Mock Invoke-WebRequest { return @{Content = $json} } -Verifiable
-                ((List -Gist $githubGist) | ConvertTo-Json -Compress) | Should Be $json
-                Assert-VerifiableMocks
+            It "Throws if ID is `$null or blank" {
+                { Remove -Id $null } | Should Throw
+                { Remove } | Should Throw
             }
         }
     }

@@ -10,7 +10,7 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/Add" {
+    Describe "Private/cli/Add" {
 
         $profile = "TestDrive:\profile.ps1"
         $pscaddie = "TestDrive:\.pscaddie"

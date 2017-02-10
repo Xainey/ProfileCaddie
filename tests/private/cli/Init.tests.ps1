@@ -10,7 +10,7 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/Init" {
+    Describe "Private/cli/Init" {
         Context "Scaffolds files" {
             It "Creates `$Profile if it doesnt exist" {
                 Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $profile }
