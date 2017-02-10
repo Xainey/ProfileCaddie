@@ -14,7 +14,7 @@ function List
 
         [Parameter(Mandatory=$False, ParameterSetName="File", Position=0)]
         [Parameter(Mandatory=$True, ParameterSetName="Gist", Position=0)]
-        [string] $Path = (Force-ResolvePath "~/.pscaddie/gists.json")
+        [string] $Path = (Resolve-UncertainPath "~/.pscaddie/gists.json")
     )
 
     if($PsCmdlet.ParameterSetName -eq "File")
@@ -26,7 +26,8 @@ function List
     }
     else
     {
-        $pieces = (ParseGist -Uri $Path)
+        $testUri = ParseGist -Uri $Path
+        Write-Verbose $testUri
         $content = (Invoke-WebRequest $Path).Content
         [System.Array] $list = $content | ConvertFrom-Json
     }

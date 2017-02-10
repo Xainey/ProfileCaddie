@@ -10,7 +10,7 @@ function Add
     )
 
     # if pscaddie/gists.ps1 doesnt exist should init?
-    $psCaddie = Force-ResolvePath "~/.pscaddie"
+    $psCaddie = Resolve-UncertainPath "~/.pscaddie"
 
     $gists = Join-Path $psCaddie "gists.json"
 

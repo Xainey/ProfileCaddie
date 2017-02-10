@@ -15,7 +15,7 @@ function ParseGist
 
     $matches = $regex.Match($Uri)
 
-    return $gist = [PSCustomObject]@{
+    return [PSCustomObject]@{
         'user' = $matches.Groups[1].Value
         'id'   = $matches.Groups[2].Value
         'sha'  = $matches.Groups[3].Value

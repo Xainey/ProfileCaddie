@@ -10,7 +10,7 @@ function Init
     )
 
     # Creates ~/.pscaddie if it doesnt exist
-    $pscaddie = Force-ResolvePath "~/.pscaddie"
+    $pscaddie = Resolve-UncertainPath "~/.pscaddie"
     if($Force)
     {
         Remove-Item -Path $pscaddie -Recurse -Force -ErrorAction SilentlyContinue

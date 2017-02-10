@@ -30,7 +30,7 @@ Author = 'Michael Willis'
 Copyright = '(c) 2017 Michael Willis. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Module to help Share your Profile'
+Description = 'Use github gists to manage and share your PowerShell profile.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''

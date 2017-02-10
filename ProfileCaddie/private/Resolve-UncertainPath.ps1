@@ -5,7 +5,7 @@
 .Notes
     Could use: $PSCmdlet.GetUnresolvedProviderPathFromPSPath()
 #>
-function Force-ResolvePath
+function Resolve-UncertainPath
 {
     [cmdletbinding()]
     param(

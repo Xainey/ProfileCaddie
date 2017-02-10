@@ -10,10 +10,10 @@ $here = $here -replace 'tests', 'ProfileCaddie'
 Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
-    Describe "Private/Force-ResolvePath" {
+    Describe "Private/Resolve-UncertainPath" {
         Context "Non-Existant Path" {
             It "It does not thow if the path does not exist" {
-                { Force-ResolvePath "~/.example/does/not/exist.ps1" } | Should Not Throw
+                { Resolve-UncertainPath "~/.example/does/not/exist.ps1" } | Should Not Throw
             }
         }
     }

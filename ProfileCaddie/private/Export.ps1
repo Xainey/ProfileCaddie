@@ -9,7 +9,7 @@ function Export
         [string] $Path
     )
 
-    $psCaddie = Force-ResolvePath "~/.pscaddie"
+    $psCaddie = Resolve-UncertainPath "~/.pscaddie"
 
     $gists = Join-Path $psCaddie "gists.json"
 

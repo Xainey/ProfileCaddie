@@ -5,11 +5,5 @@
     // Associate Jenkinsfile with groovy, can be done at global user scope.
     "files.associations": {
         "Jenkinsfile": "groovy"
-    },
-
-    //-------- PowerShell Configuration --------
-
-    // Use a custom PowerShell Script Analyzer settings file for this workspace.
-    // Relative paths for this setting are always relative to the workspace root dir.
-    "powershell.scriptAnalysis.settingsPath": "ScriptAnalyzerSettings.psd1"
+    }
 }

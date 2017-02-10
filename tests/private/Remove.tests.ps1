@@ -51,8 +51,8 @@ InModuleScope "ProfileCaddie" {
             }
         )
 
-        Mock Force-ResolvePath { return $pscaddie } -ParameterFilter { $Path -eq "~/.pscaddie" }
-        Mock Force-ResolvePath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
+        Mock Resolve-UncertainPath { return $pscaddie } -ParameterFilter { $Path -eq "~/.pscaddie" }
+        Mock Resolve-UncertainPath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
 
         Init
         Add -Uri $gist1

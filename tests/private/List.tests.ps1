@@ -35,7 +35,7 @@ InModuleScope "ProfileCaddie" {
         $gist1 = "https://gist.githubusercontent.com/Xainey/a8793a62dcb6d613bf0482ee6deec36f/raw/f965f317fe4c13cc7224484d7494e7e1c9334b38/export.ps1"
         $gist2 = "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/touch.ps1"
 
-        $gists = @(
+        $localGists = @(
             [PSCustomObject]@{
                 "user" =  "Xainey"
                 "id"   = "a8793a62dcb6d613bf0482ee6deec36f"
@@ -50,23 +50,42 @@ InModuleScope "ProfileCaddie" {
             }
         )
 
-        Mock Force-ResolvePath { return $pscaddie } -ParameterFilter { $Path -eq "~/.pscaddie" }
-        Mock Force-ResolvePath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
+        $githubGist = "https://gist.githubusercontent.com/Xainey/a8793a62dcb6d613bf0482ee6deec36f/raw/f965f317fe4c13cc7224484d7494e7e1c9334b38/profilecaddie.json"
 
-        Context "Gists" {
+        $githubGists = @(
+            [PSCustomObject]@{
+                "user" =  "Xainey"
+                "id"   = "a8793a62dcb6d613bf0482ee6deec36f"
+                "sha"  = "f965f317fe4c13cc7224484d7494e7e1c9334b38"
+                "file" =  "profilecaddie.json"
+            }
+        )
+
+        Mock Resolve-UncertainPath { return $pscaddie } -ParameterFilter { $Path -eq "~/.pscaddie" }
+        Mock Resolve-UncertainPath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
+
+        Context "Local Json" {
             It "List should return 0 objects if list is blank or non-existant" {
                 (List).Count | Should BeExactly 0
             }
             It "Returns the correct single object from the list" {
                 Init -Force
                 Add -Uri $gist1
-                (List | ConvertTo-Json) | Should Be ($gists[0] | ConvertTo-Json)
+                (List | ConvertTo-Json) | Should Be ($localGists[0] | ConvertTo-Json)
             }
             It "Returns the correct multiple objects from the list" {
                 Init -Force
                 Add -Uri $gist1
                 Add -Uri $gist2
-                (List | ConvertTo-Json) | Should Be ($gists | ConvertTo-Json)
+                (List | ConvertTo-Json) | Should Be ($localGists | ConvertTo-Json)
+            }
+        }
+        Context "Github Gist Json" {
+            It "Returns a list gist json" {
+                $json = ($githubGists[0] | ConvertTo-Json -Compress)
+                Mock Invoke-WebRequest { return @{Content = $json} } -Verifiable
+                ((List -Gist $githubGist) | ConvertTo-Json -Compress) | Should Be $json
+                Assert-VerifiableMocks
             }
         }
     }

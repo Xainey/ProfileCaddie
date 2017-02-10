@@ -11,9 +11,11 @@ Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
 InModuleScope "ProfileCaddie" {
     Describe "Private/Export" {
-        Context "..." {
-            It "..." {
-
+        Context "Basic Export" {
+            It "Copies the gist.json file to target path" {
+                Mock Copy-Item {} -Verifiable
+                Export -Path "./gists.json"
+                Assert-VerifiableMocks
             }
         }
     }

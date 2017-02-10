@@ -13,7 +13,7 @@ function Make
         $Output += (Invoke-WebRequest $uri).Content
         $Output += "`n`n"
     }
-    $psCaddie = Force-ResolvePath "~/.pscaddie"
+    $psCaddie = Resolve-UncertainPath "~/.pscaddie"
     $makeProfile = Join-Path $psCaddie "Profile.ps1"
     $Output | Out-File -FilePath $makeProfile -Force
 

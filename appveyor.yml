@@ -1,6 +1,6 @@
 environment:
-  NuGetApiKey:
-    secure: xxx
+  my_variable:
+    secure: RDkCw7VUvmyMe0+RT5NAaQdurj4QDF7NIRPdFeLf5X4Vuu1AzBvb7I8FoouHzTDH
 
 os: WMF 5
 
