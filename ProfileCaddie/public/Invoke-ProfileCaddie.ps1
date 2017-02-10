@@ -3,15 +3,13 @@
 
     .DESCRIPTION
 
-    .PARAMETER Ask
-
     .PARAMETER Help
 
     .EXAMPLE
 
     .NOTES
 #>
-function Invoke-ProfileCaddy
+function Invoke-ProfileCaddie
 {
     [cmdletbinding(DefaultParameterSetName="Help")]
     param(

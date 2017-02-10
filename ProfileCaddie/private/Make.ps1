@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Generate a new ProfileCaddy Profile.ps1 and inject it into $Profile.
+    Generate a new ProfileCaddie Profile.ps1 and inject it into $Profile.
 #>
 function Make
 {
@@ -13,18 +13,18 @@ function Make
         $Output += (Invoke-WebRequest $uri).Content
         $Output += "`n`n"
     }
-    $psCaddy = Force-ResolvePath "~/.pscaddy"
-    $makeProfile = Join-Path $psCaddy "Profile.ps1"
+    $psCaddie = Force-ResolvePath "~/.pscaddie"
+    $makeProfile = Join-Path $psCaddie "Profile.ps1"
     $Output | Out-File -FilePath $makeProfile -Force
 
-    # Insert Marker into profile to dot source "~/.pscaddy/Profile.ps1"
-    $marker = "# Load ProfileCaddy Generated Profile (Do Not Modify)"
+    # Insert Marker into profile to dot source "~/.pscaddie/Profile.ps1"
+    $marker = "# Load ProfileCaddie Generated Profile (Do Not Modify)"
     $profilePath = (Get-ProfilePath -Name CurrentUserCurrentHost)
     if((Select-String -Path $profilePath -Pattern $marker).count -eq 0)
     {
         $userProfile = $marker
         $userProfile += "`n"
-        $userProfile += '$ProfileCaddy = "~/.pscaddy/profile.ps1"; if(Test-Path(Resolve-Path $ProfileCaddy -ErrorAction SilentlyContinue)){. $ProfileCaddy}'
+        $userProfile += '$ProfileCaddie = "~/.pscaddie/profile.ps1"; if(Test-Path(Resolve-Path $ProfileCaddie -ErrorAction SilentlyContinue)){. $ProfileCaddie}'
         $userProfile += "`n`n"
         $userProfile += (Get-Content $profilePath | Out-String)
         $userProfile | Out-File -FilePath $profilePath -Force

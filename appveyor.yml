@@ -1,0 +1,13 @@
+environment:
+  NuGetApiKey:
+    secure: xxx
+
+os: WMF 5
+
+skip_commits:
+  message: /updated readme.*|update readme.*s/
+
+build: false
+
+test_script:
+  - ps: . .\build.ps1

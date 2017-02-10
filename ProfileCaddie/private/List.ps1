@@ -14,7 +14,7 @@ function List
 
         [Parameter(Mandatory=$False, ParameterSetName="File", Position=0)]
         [Parameter(Mandatory=$True, ParameterSetName="Gist", Position=0)]
-        [string] $Path = (Force-ResolvePath "~/.pscaddy/gists.json")
+        [string] $Path = (Force-ResolvePath "~/.pscaddie/gists.json")
     )
 
     if($PsCmdlet.ParameterSetName -eq "File")

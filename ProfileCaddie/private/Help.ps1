@@ -4,7 +4,7 @@
 #>
 function Help()
 {
-    Get-Help about_ProfileCaddy
+    Get-Help about_ProfileCaddie
 
     $Private = @( Get-ChildItem -Path $PSScriptRoot/*.ps1 -ErrorAction SilentlyContinue )
 

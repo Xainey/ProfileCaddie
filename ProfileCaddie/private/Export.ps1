@@ -9,9 +9,9 @@ function Export
         [string] $Path
     )
 
-    $psCaddy = Force-ResolvePath "~/.pscaddy"
+    $psCaddie = Force-ResolvePath "~/.pscaddie"
 
-    $gists = Join-Path $psCaddy "gists.json"
+    $gists = Join-Path $psCaddie "gists.json"
 
     Copy-Item -Path $gists -Destination $Path
 }

@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Import a gist url or local json file into ProfileCaddy.
+    Import a gist url or local json file into ProfileCaddie.
 #>
 function Import
 {

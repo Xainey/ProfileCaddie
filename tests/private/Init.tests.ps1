@@ -2,14 +2,14 @@ $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 
 # Since we match the srs/tests organization this works
-$here = $here -replace 'tests', 'ProfileCaddy'
+$here = $here -replace 'tests', 'ProfileCaddie'
 
 . "$here\$sut"
 
 # Import our module to use InModuleScope
-Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
+Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
-InModuleScope "ProfileCaddy" {
+InModuleScope "ProfileCaddie" {
     Describe "Private/Init" {
         Context "Scaffolds files" {
             It "Creates `$Profile if it doesnt exist" {
@@ -18,19 +18,19 @@ InModuleScope "ProfileCaddy" {
                 Init
                 Assert-VerifiableMocks
             }
-            It "Creates ~/.pscaddy if it doesnt exist" {
-                Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $pscaddy }
-                Mock New-Item {} -Verifiable -ParameterFilter {$Path -eq $pscaddy -and $ItemType -eq "Container" }
+            It "Creates ~/.pscaddie if it doesnt exist" {
+                Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $pscaddie }
+                Mock New-Item {} -Verifiable -ParameterFilter {$Path -eq $pscaddie -and $ItemType -eq "Container" }
                 Init
                 Assert-VerifiableMocks
             }
-            It "Creates ~/.pscaddy/private.ps1 if it doesnt exist" {
+            It "Creates ~/.pscaddie/private.ps1 if it doesnt exist" {
                 Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $private }
                 Mock New-Item {} -Verifiable -ParameterFilter {$Path -eq $private -and $ItemType -eq "File" }
                 Init
                 Assert-VerifiableMocks
             }
-            It "Creates ~/.pscaddy/gists.json if it doesnt exist" {
+            It "Creates ~/.pscaddie/gists.json if it doesnt exist" {
                 Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $gists }
                 Mock New-Item {} -Verifiable -ParameterFilter {$Path -eq $gists -and $ItemType -eq "File" }
                 Init

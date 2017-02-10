@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Add a Raw Gist url to ProfileCaddy.
+    Add a Raw Gist url to ProfileCaddie.
 #>
 function Add
 {
@@ -9,10 +9,10 @@ function Add
         [string] $Uri
     )
 
-    # if pscaddy/gists.ps1 doesnt exist should init?
-    $psCaddy = Force-ResolvePath "~/.pscaddy"
+    # if pscaddie/gists.ps1 doesnt exist should init?
+    $psCaddie = Force-ResolvePath "~/.pscaddie"
 
-    $gists = Join-Path $psCaddy "gists.json"
+    $gists = Join-Path $psCaddie "gists.json"
 
     [System.Array] $list = List
 

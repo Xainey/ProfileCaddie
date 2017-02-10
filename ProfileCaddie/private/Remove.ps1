@@ -14,7 +14,7 @@ function Remove
         throw ("Must provide a gist ID to remove. View All with -List.")
     }
 
-    $gists = Force-ResolvePath "~/.pscaddy/gists.json"
+    $gists = Force-ResolvePath "~/.pscaddie/gists.json"
 
     if ((Test-Path -Path $gists))
     {

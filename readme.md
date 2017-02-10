@@ -1,4 +1,4 @@
-# PSCaddy
+# ProfileCaddie
 
 Simple tool to help manage and share useful snippits, functions, and aliases for `$Profile`
 
@@ -7,38 +7,38 @@ Simple tool to help manage and share useful snippits, functions, and aliases for
 `-Help` : Shows Help Docs
 
 ```powershell
-Invoke-Caddy -Help
+Invoke-Caddie -Help
 ```
 
-`-Init` : Scaffold Files in ~/.pscaddy/
+`-Init` : Scaffold Files in ~/.pscaddie/
 
 ```powershell
-Invoke-Caddy -Init
-Invoke-Caddy -Init -Force # Clean and Init ~/.pscaddy/*
+Invoke-Caddie -Init
+Invoke-Caddie -Init -Force # Clean and Init ~/.pscaddie/*
 ```
 
 `-Add` : Add a raw gist url
 
 ```powershell
-Invoke-Caddy -Add "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/touch.ps1"
+Invoke-Caddie -Add "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/touch.ps1"
 ```
 
 `-Remove` : Remove a gist by ID
 
 ```powershell
-Invoke-Caddy -Remove "bc4e497435b440f6699a4f778c89a0c5"
+Invoke-Caddie -Remove "bc4e497435b440f6699a4f778c89a0c5"
 ```
 
 `-Make` : Build Profile from Custom.ps1 and Gists.json / Inserts marker in $Profile
 
 ```powershell
-Invoke-Caddy -Make
+Invoke-Caddie -Make
 ```
 
-`-Import` : Imports all pscaddy gists from a gist (whoa)
+`-Import` : Imports all pscaddie gists from a gist (whoa)
 
 ```powershell
-Invoke-Caddy -Import "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/pscaddy.json"
+Invoke-Caddie -Import "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/pscaddie.json"
 ```
 
 `-Export` : Undecided
@@ -47,16 +47,16 @@ Invoke-Caddy -Import "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6
 # Hmmm
 ```
 
-`-List` : Lists all of the gists in your ~/.pscaddy/gists.json
+`-List` : Lists all of the gists in your ~/.pscaddie/gists.json
 
 ```powershell
-Invoke-Caddy -List
+Invoke-Caddie -List
 ```
 
 # File Structure
 
 ```
-.pscaddy /
+.pscaddie /
     |
     |- Custom.ps1
     |- Gists.json
@@ -67,8 +67,8 @@ Invoke-Caddy -List
 # Notes
 
 ```
-    # Load Profile Caddy Generated Profile
-    # $PScaddy = "~/.pscaddy/profile.ps1"; if(Test-Path(Resolve-Path $PScaddy -ErrorAction SilentlyContinue)){. $PScaddy}
+    # Load Profile Caddie Generated Profile
+    # $PScaddie = "~/.pscaddie/profile.ps1"; if(Test-Path(Resolve-Path $PScaddie -ErrorAction SilentlyContinue)){. $PScaddie}
 
     https://developer.github.com/v3/gists/
     Allow multiple?

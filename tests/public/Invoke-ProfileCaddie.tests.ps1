@@ -2,18 +2,18 @@ $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 
 #since we match the srs/tests organization this works
-$here = $here -replace 'tests', 'ProfileCaddy'
+$here = $here -replace 'tests', 'ProfileCaddie'
 
 . "$here\$sut"
 
 # Import our module to use InModuleScope
-Import-Module (Resolve-Path ".\ProfileCaddy\ProfileCaddy.psm1") -Force
+Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 
-InModuleScope "ProfileCaddy" {
-    Describe "Public/Invoke-ProfileCaddy" {
+InModuleScope "ProfileCaddie" {
+    Describe "Public/Invoke-ProfileCaddie" {
         Context "Help" {
             It "Gets the docs" {
-                { Invoke-ProfileCaddy -Help } | Should Not Throw
+                { Invoke-ProfileCaddie -Help } | Should Not Throw
             }
         }
     }
