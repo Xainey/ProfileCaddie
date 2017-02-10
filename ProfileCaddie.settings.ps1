@@ -6,6 +6,7 @@ param(
     $ModuleName = 'ProfileCaddie',
     $ModulePath = './ProfileCaddie',
     $BuildNumber = $env:BUILD_NUMBER,
+    $UseNextPSGalleryVersion = $false
     $PercentCompliance  = '0'
 )
 

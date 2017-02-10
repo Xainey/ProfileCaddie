@@ -17,7 +17,7 @@ test_script:
       Invoke-Build -Task InstallDependencies
 
       # Run Pipeline
-      Invoke-Build
+      Invoke-Build -UseNextPSGalleryVersion $true
 
       # Publish Test Results
       $testResultsFile = (Resolve-Path ".\artifacts\TestResults.xml")

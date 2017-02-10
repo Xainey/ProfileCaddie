@@ -20,9 +20,11 @@ function Publish-ArtifactZip
     $manifest = Join-Path $moduleDirectory "$ModuleName.psd1"
     $zipFilePath = Join-Path $artifactDirectory "$ModuleName.zip"
 
-    $version = (Get-Module -FullyQualifiedName $manifest -ListAvailable).Version | Select-Object Major, Minor
-    $newVersion = New-Object Version -ArgumentList $version.major, $version.minor, $BuildNumber
-    Update-ModuleManifest -Path $manifest -ModuleVersion $newVersion
+    # Using BuildHelpers to update this beforehand
+
+    # $version = (Get-Module -FullyQualifiedName $manifest -ListAvailable).Version | Select-Object Major, Minor
+    # $newVersion = New-Object Version -ArgumentList $version.major, $version.minor, $BuildNumber
+    # Update-ModuleManifest -Path $manifest -ModuleVersion $newVersion
 
     Add-Type -assemblyname System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::CreateFromDirectory($moduleDirectory, $zipFilePath)
@@ -55,8 +57,11 @@ function Publish-NugetPackage
         [string] $destinationPath
     )
 
-    $CurrentVersion = (Get-Module -FullyQualifiedName "./$ModuleName" -ListAvailable).Version | Select-Object Major, Minor
-    $version = New-Object Version -ArgumentList $CurrentVersion.major, $CurrentVersion.minor, $BuildNumber
+    # Using BuildHelpers to update this beforehand
+    $version = (Get-Module -FullyQualifiedName "./$ModuleName" -ListAvailable).Version
+
+    # $CurrentVersion = (Get-Module -FullyQualifiedName "./$ModuleName" -ListAvailable).Version | Select-Object Major, Minor
+    # $version = New-Object Version -ArgumentList $CurrentVersion.major, $CurrentVersion.minor, $BuildNumber
 
     $moduleInfo = @{
         packageName = $packageName

@@ -127,11 +127,14 @@ task ConfirmTestsPassed {
 # Synopsis: Creates Archived Zip and Nuget Artifacts
 task Archive {
     # Load the module, read the exported functions, update the psd1 FunctionsToExport
-    # Set-ModuleFunctions
+    Set-ModuleFunctions
 
-    # Bump the module version
-    # $Version = Get-NextPSGalleryVersion -Name $env:BHProjectName
-    # Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $Version
+    # Bump the module version from PSGallery
+    if($UseNextPSGalleryVersion)
+    {
+        $Version = Get-NextPSGalleryVersion -Name $env:BHProjectName
+        Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $Version
+    }
 
     $moduleInfo = @{
         ModuleName = $ModuleName
