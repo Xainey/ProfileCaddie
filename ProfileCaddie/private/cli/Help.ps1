@@ -18,9 +18,9 @@ function Help()
     $cliCommands = @( Get-ChildItem -Path $PSScriptRoot/*.ps1 -ErrorAction SilentlyContinue )
 
     $cli = @()
-    foreach($import in $cliCommands)
+    foreach($flag in $cliCommands)
     {
-        $name = (Get-ChildItem $import).BaseName
+        $name = (Get-ChildItem $flag).BaseName
         $cli += [PSCustomObject]@{
             "Command" = $name
             "Synopsis" = (Get-Help $name).Synopsis

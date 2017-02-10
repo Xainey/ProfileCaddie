@@ -26,12 +26,13 @@ function Import
         [System.Array] $list = List -Gist $Path
     }
 
-    foreach($item in $list)
+    foreach($import_item in $list)
     {
-        $uri = @{}
-        foreach($piece in $item.psobject.properties)
+        [HashTable] $uri = @{}
+        foreach($import_piece in $import_item.psobject.properties)
         {
-            $uri[$piece.name] = $piece.value
+            $import_piece
+            $uri[$import_piece.name] = $import_piece.value
         }
 
         Add -Uri (Get-GistUri @uri)

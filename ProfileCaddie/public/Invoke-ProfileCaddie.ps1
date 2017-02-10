@@ -13,16 +13,73 @@ function Invoke-ProfileCaddie
 {
     [cmdletbinding(DefaultParameterSetName="Help")]
     param(
-        #Help
-        [Parameter(Mandatory=$False, ParameterSetName="Help")]
+        ###############################################################################
+        # CLI Command Flags
+        ###############################################################################
+
+        # Help
+        [Parameter(Mandatory=$True, ParameterSetName="Help")]
         [switch] $Help,
 
-        # Ask
-        [Parameter(Mandatory=$True, ParameterSetName="Ask")]
-        [switch] $Ask,
-        [string] $Format,
-        [Parameter(Mandatory=$True, ParameterSetName="Ask", Position=0)]
-        [string] $Question
+        # Add
+        [Parameter(Mandatory=$True, ParameterSetName="Add")]
+        [switch] $Add,
+
+        # Export
+        [Parameter(Mandatory=$True, ParameterSetName="Export")]
+        [switch] $Export,
+
+        # Import
+        [Parameter(Mandatory=$True, ParameterSetName="Import")]
+        [switch] $Import,
+
+        # Init
+        [Parameter(Mandatory=$True, ParameterSetName="Init")]
+        [switch] $Init,
+
+        # List
+        [Parameter(Mandatory=$True, ParameterSetName="List")]
+        [switch] $List,
+
+        # Make
+        [Parameter(Mandatory=$True, ParameterSetName="Make")]
+        [switch] $Make,
+
+        # Remove
+        [Parameter(Mandatory=$True, ParameterSetName="Remove")]
+        [switch] $Remove,
+
+        ###############################################################################
+        # Bound Parameters
+        ###############################################################################
+
+        # Path
+        [Parameter(Mandatory=$False, ParameterSetName="Import", Position=0)]
+        [Parameter(Mandatory=$False, ParameterSetName="List", Position=1)]
+        [Parameter(Mandatory=$False, ParameterSetName="Export", Position=0)]
+        [string] $Path,
+
+        # Gist
+        [Parameter(Mandatory=$False, ParameterSetName="Import")]
+        [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
+        [switch] $Gist,
+
+        # File
+        [Parameter(Mandatory=$False, ParameterSetName="Import")]
+        [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
+        [switch] $File,
+
+        # Uri
+        [Parameter(Mandatory=$False, ParameterSetName="Add", Position=0)]
+        [string] $Uri,
+
+        # Force
+        [Parameter(Mandatory=$False, ParameterSetName="Init", Position=0)]
+        [switch] $Force,
+
+        # ID
+        [Parameter(Mandatory=$False, ParameterSetName="Remove", Position=0)]
+        [string] $Id
     )
 
     # Remove Switch for ParmameterSetName

@@ -4,23 +4,27 @@
 #>
 function Make
 {
+    $psCaddie = Resolve-UncertainPath "~/.pscaddie"
+    $private = Join-Path $psCaddie "Private.ps1"
+    $makeProfile = Join-Path $psCaddie "Profile.ps1"
+
+    # Copy Contents of .Private.psd1
+    $Output = (Get-Content -Path $private) + "`n"
+
     # Collect all Raw gists and make file
-    $Output = $null
     foreach($item in List)
     {
-        $uri = "https://gist.githubusercontent.com/{0}/{1}/raw/{2}/{3}" -f $item.user, $item.id, $item.sha, $item.file
+        $uri = Get-GistUri -user $item.user -id $item.id -sha $item.sha -file $item.file
         $Output += "# Source: $uri`n"
         $Output += (Invoke-WebRequest $uri).Content
         $Output += "`n`n"
     }
-    $psCaddie = Resolve-UncertainPath "~/.pscaddie"
-    $makeProfile = Join-Path $psCaddie "Profile.ps1"
     $Output | Out-File -FilePath $makeProfile -Force
 
     # Insert Marker into profile to dot source "~/.pscaddie/Profile.ps1"
     $marker = "# Load ProfileCaddie Generated Profile (Do Not Modify)"
     $profilePath = (Get-ProfilePath -Name CurrentUserCurrentHost)
-    if((Select-String -Path $profilePath -Pattern $marker).count -eq 0)
+    if((Select-String -Path $profilePath -SimpleMatch $marker).count -eq 0)
     {
         $userProfile = $marker
         $userProfile += "`n"

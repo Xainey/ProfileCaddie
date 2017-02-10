@@ -18,7 +18,7 @@ function Add
 
     $list += ParseGist $Uri
 
-    $json = $list | Sort-Object -Property id, sha -Unique | ConvertTo-Json
+    $json = $list | Sort-Object -Property id, sha, file -Unique | ConvertTo-Json
 
     $json | Out-File -FilePath $gists -Force
 }
