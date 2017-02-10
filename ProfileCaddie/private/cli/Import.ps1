@@ -31,7 +31,6 @@ function Import
         [HashTable] $uri = @{}
         foreach($import_piece in $import_item.psobject.properties)
         {
-            $import_piece
             $uri[$import_piece.name] = $import_piece.value
         }
 
