@@ -12,8 +12,10 @@ Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
 InModuleScope "ProfileCaddie" {
     Describe "Private/cli/Init" {
         Context "Scaffolds files" {
+            Mock Resolve-UncertainPath { return "TestDrive:\.pscaddie" } -ParameterFilter { "~/.pscaddie" } -Verifiable
+
             It "Creates `$Profile if it doesnt exist" {
-                Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $profile }
+                Mock Test-Path { return $false } -Verifiable -ParameterFilter {$Path -eq $profilePath }
                 Mock New-Item {} -Verifiable -ParameterFilter {$Path -eq $profile -and $ItemType -eq "File" }
                 Init
                 Assert-VerifiableMocks
