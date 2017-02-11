@@ -10,7 +10,12 @@ function Add
     )
 
     # if pscaddie/gists.ps1 doesnt exist should init?
+
     $psCaddie = Resolve-UncertainPath "~/.pscaddie"
+    if(!(Test-Path $psCaddie))
+    {
+        return "ProfileCaddie directory does not exist. Run -Init."
+    }
 
     $gists = Join-Path $psCaddie "gists.json"
 
