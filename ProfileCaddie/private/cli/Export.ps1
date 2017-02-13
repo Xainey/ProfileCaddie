@@ -13,5 +13,15 @@ function Export
 
     $gists = Join-Path $psCaddie "gists.json"
 
+    if(!(Test-Path $psCaddie))
+    {
+        return ($LocalMessage.ProfileDirectoryNotFound)
+    }
+
+    if(!(Test-Path $gists))
+    {
+        return ($LocalMessage.GistJsonNotFound)
+    }
+
     Copy-Item -Path $gists -Destination $Path
 }

@@ -11,7 +11,7 @@ function Remove
 
     if($Id -eq $null -or $Id -eq "")
     {
-        throw ("Must provide a gist ID to remove. View All with -List.")
+        throw ($LocalMessage.MustProvideGistID)
     }
 
     $gists = Resolve-UncertainPath "~/.pscaddie/gists.json"
