@@ -15,6 +15,27 @@ InModuleScope "ProfileCaddie" {
             It "Gets the docs" {
                 { Invoke-ProfileCaddie -Help } | Should Not Throw
             }
+            It "..." {
+                { Invoke-ProfileCaddie -Add } | Should Not Throw
+            }
+            It "..." {
+                { Invoke-ProfileCaddie -Export } | Should Not Throw
+            }
+            It "..." {
+                { Invoke-ProfileCaddie -Import } | Should Not Throw
+            }
+            It "..." {
+                { Invoke-ProfileCaddie -Init } | Should Not Throw
+            }
+            It "..." {
+                { Invoke-ProfileCaddie -List } | Should Not Throw
+            }
+            It "..." {
+                { Invoke-ProfileCaddie -Make } | Should Not Throw
+            }
+            It "..." {
+                { Invoke-ProfileCaddie -Remove } | Should Not Throw
+            }
         }
     }
 }
