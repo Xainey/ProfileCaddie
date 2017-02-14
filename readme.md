@@ -1,5 +1,7 @@
 # ProfileCaddie
 
+[![badges](https://img.shields.io/badge/code%20style-OTBS-brightgreen.svg?style=flat)](https://github.com/PoshCode/PowerShellPracticeAndStyle)
+
 Simple tool to help manage and share useful snippits, functions, and aliases for `$Profile`
 
 # CLI Reference

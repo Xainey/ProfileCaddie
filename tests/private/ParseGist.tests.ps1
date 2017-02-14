@@ -1,16 +1,7 @@
-$here = Split-Path -Parent $MyInvocation.MyCommand.Path
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
+$pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
 
-# Since we match the srs/tests organization this works
-$here = $here -replace 'tests', 'ProfileCaddie'
-
-. "$here\$sut"
-
-# Import our module to use InModuleScope
-Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
-
-InModuleScope "ProfileCaddie" {
-    Describe "Private/ParseGist" {
+Describe $pester.Namespace {
+    InModuleScope $pester.ModuleName {
 
         $goodGists = @{
             "Export.ps1"  =  "https://gist.githubusercontent.com/Xainey/a8793a62dcb6d613bf0482ee6deec36f/raw/f965f317fe4c13cc7224484d7494e7e1c9334b38/export.ps1"

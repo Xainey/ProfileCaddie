@@ -1,16 +1,7 @@
-$here = Split-Path -Parent $MyInvocation.MyCommand.Path
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
+$pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
 
-# Since we match the srs/tests organization this works
-$here = $here -replace 'tests', 'ProfileCaddie'
-
-. "$here\$sut"
-
-# Import our module to use InModuleScope
-Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
-
-InModuleScope "ProfileCaddie" {
-    Describe "Private/Get-ProfilePath" {
+Describe $pester.Namespace {
+    InModuleScope $pester.ModuleName {
         Context "Returns a list or string" {
             It "Returns a string if profile is requested by name" {
                 (Get-ProfilePath -Name AllUsersAllHosts) | Should BeOfType String

@@ -4,6 +4,7 @@
     .DESCRIPTION
 
     .PARAMETER Help
+        Show custom Help Docs. For Native help use (Get-Help Invoke-ProfileCaddie).
 
     .EXAMPLE
 
@@ -18,7 +19,7 @@ function Invoke-ProfileCaddie
         ###############################################################################
 
         # Help
-        [Parameter(Mandatory=$True, ParameterSetName="Help")]
+        [Parameter(Mandatory=$False, ParameterSetName="Help")]
         [switch] $Help,
 
         # Add
@@ -56,7 +57,7 @@ function Invoke-ProfileCaddie
         # Path
         [Parameter(Mandatory=$False, ParameterSetName="Import", Position=0)]
         [Parameter(Mandatory=$False, ParameterSetName="List", Position=1)]
-        [Parameter(Mandatory=$False, ParameterSetName="Export", Position=0)]
+        [Parameter(Mandatory=$True, ParameterSetName="Export", Position=0)]
         [string] $Path,
 
         # Gist
@@ -70,7 +71,7 @@ function Invoke-ProfileCaddie
         [switch] $File,
 
         # Uri
-        [Parameter(Mandatory=$False, ParameterSetName="Add", Position=0)]
+        [Parameter(Mandatory=$True, ParameterSetName="Add", Position=0)]
         [string] $Uri,
 
         # Force
