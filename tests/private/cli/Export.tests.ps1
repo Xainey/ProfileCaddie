@@ -13,7 +13,9 @@ InModuleScope "ProfileCaddie" {
     Describe "Private/cli/Export" {
         Context "Basic Export" {
             It "Copies the gist.json file to target path" {
+                Mock Resolve-UncertainPath { return "TestDrive:/.pscaddie" } -ParameterFilter { "~/.pscaddie" }
                 Mock Copy-Item {} -Verifiable
+                Init
                 Export -Path "./gists.json"
                 Assert-VerifiableMocks
             }
