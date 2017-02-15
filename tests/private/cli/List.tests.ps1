@@ -75,7 +75,7 @@ Describe $pester.Namespace {
             It "Returns a list gist json" {
                 $json = ($githubGists[0] | ConvertTo-Json -Compress)
                 Mock Invoke-WebRequest { return @{Content = $json} } -Verifiable
-                ((List -Gist $githubGist) | ConvertTo-Json -Compress) | Should Be $json
+                ((List -Path $githubGist) | ConvertTo-Json -Compress) | Should Be $json
                 Assert-VerifiableMocks
             }
         }

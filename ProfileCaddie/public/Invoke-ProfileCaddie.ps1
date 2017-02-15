@@ -56,19 +56,9 @@ function Invoke-ProfileCaddie
 
         # Path
         [Parameter(Mandatory=$True, ParameterSetName="Import", Position=0)]
-        [Parameter(Mandatory=$False, ParameterSetName="List", Position=1)]
+        [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
         [Parameter(Mandatory=$True, ParameterSetName="Export", Position=0)]
         [string] $Path,
-
-        # Gist
-        [Parameter(Mandatory=$True, ParameterSetName="Import")]
-        [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
-        [switch] $Gist,
-
-        # File
-        [Parameter(Mandatory=$True, ParameterSetName="Import")]
-        [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
-        [switch] $File,
 
         # Uri
         [Parameter(Mandatory=$True, ParameterSetName="Add", Position=0)]

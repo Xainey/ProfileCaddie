@@ -4,20 +4,15 @@
 #>
 function List
 {
-    [cmdletbinding(DefaultParameterSetName="File")]
+    [cmdletbinding()]
     param(
-        [Parameter(Mandatory=$False, ParameterSetName="Gist")]
-        [switch] $Gist,
-
-        [Parameter(Mandatory=$False, ParameterSetName="File")]
-        [switch] $File,
-
-        [Parameter(Mandatory=$False, ParameterSetName="File", Position=0)]
-        [Parameter(Mandatory=$True, ParameterSetName="Gist", Position=0)]
+        [Parameter(Mandatory=$False, Position=0)]
         [string] $Path = (Resolve-UncertainPath "~/.pscaddie/gists.json")
     )
 
-    if($PsCmdlet.ParameterSetName -eq "File")
+    $Type = Get-UriType -Uri $Path
+
+    if($Type -eq "File")
     {
         if ((Test-Path -Path $Path))
         {

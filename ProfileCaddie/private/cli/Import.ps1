@@ -4,26 +4,22 @@
 #>
 function Import
 {
-    [cmdletbinding(DefaultParameterSetName="File")]
+    [cmdletbinding()]
     param(
-        [Parameter(Mandatory=$False, ParameterSetName="Gist")]
-        [switch] $Gist,
-
-        [Parameter(Mandatory=$False, ParameterSetName="File")]
-        [switch] $File,
-
-        [Parameter(Mandatory=$False, ParameterSetName="File", Position=0)]
-        [Parameter(Mandatory=$True, ParameterSetName="Gist", Position=0)]
+        [Parameter(Mandatory=$True, Position=0)]
         [string] $Path
     )
 
-    if($PsCmdlet.ParameterSetName -eq "File")
+    $Type = Get-UriType -Uri $Path
+
+    if($Type -eq "File")
     {
-        [System.Array] $list = List -File $Path
+        [System.Array] $list = List -Path $Path
     }
+    #TODO change
     else
     {
-        [System.Array] $list = List -Gist $Path
+        [System.Array] $list = List -Path $Path
     }
 
     foreach($import_item in $list)

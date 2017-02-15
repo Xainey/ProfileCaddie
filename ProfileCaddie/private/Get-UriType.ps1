@@ -2,8 +2,7 @@ function Get-UriType
 {
     [cmdletbinding()]
     param(
-        [string] $Uri,
-        [switch] $Verify
+        [string] $Uri
     )
 
     # May want to restrict to only .ps1 Files

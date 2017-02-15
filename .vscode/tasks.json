@@ -29,7 +29,7 @@
 	"showOutput": "always",
 
     "args": [
-        "-NoProfile", "-ExecutionPolicy", "Bypass"
+        "-NoProfile", "-ExecutionPolicy", "Bypass", "-NonInteractive"
     ],
 
     // Associate with test task runner

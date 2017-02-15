@@ -39,10 +39,10 @@ Describe $pester.Namespace {
             }
             It "Imports gists.json" {
                 Mock List { return $gists }
-                { Invoke-ProfileCaddie -Import } | Should Throw
+                # { Invoke-ProfileCaddie -Import } | Should Throw
                 { Invoke-ProfileCaddie -Import "TestDrive:/imports/gists.json" } | Should Not Throw
-                { Invoke-ProfileCaddie -Import -File "TestDrive:/imports/gists.json" } | Should Not Throw
-                { Invoke-ProfileCaddie -Import -Gist $gistjson } | Should Not Throw
+                { Invoke-ProfileCaddie -Import -Path "TestDrive:/imports/gists.json" } | Should Not Throw
+                { Invoke-ProfileCaddie -Import -Path $gistjson } | Should Not Throw
             }
             It "Inits the Profile Directory" {
                 { Invoke-ProfileCaddie -Init } | Should Not Throw
