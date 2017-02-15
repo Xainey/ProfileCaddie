@@ -165,7 +165,7 @@ task Publish {
         throw '$ENV:BHProjectName not set'
     }
 
-    # Credit From: https://github.com/RamblingCookieMonster/PSDepend/blob/fb5cbe8372453d8e355dd63edad3ecd38a8697a3/psake.ps1#L73
+    # Credit RamblingCookieMonster: https://github.com/RamblingCookieMonster/PSDepend/blob/fb5cbe8372453d8e355dd63edad3ecd38a8697a3/psake.ps1#L73
     if(
         $ENV:BHBuildSystem -ne 'Unknown' -and
         $ENV:BHBranchName -eq "master" -and

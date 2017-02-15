@@ -86,6 +86,9 @@ function Invoke-ProfileCaddie
     # Remove Switch for ParmameterSetName
     $PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
 
+    Write-Host "test"  -ForegroundColor Cyan
+    Write-Verbose ("Calling '{0}' function with: `n {1}" -f $PsCmdlet.ParameterSetName, ($PSBoundParameters | Out-String ))
+
     # Call Functon with Bound Parms
     . $PsCmdlet.ParameterSetName @PSBoundParameters
 }

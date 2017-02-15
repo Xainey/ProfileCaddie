@@ -1,36 +1,53 @@
-# madness lies down this path
-
+# Madness lies down this path :)
 param($currentPath)
 
-$leaf = (Split-Path -Leaf $currentPath)
+# Walk to Module root
 $scriptpath = $currentPath
+$leaf = (Split-Path -Leaf $currentPath)
+$walker = [System.Collections.ArrayList]::new()
+while($leaf -ne "tests") {
+    $scriptpath = Split-Path -Parent $scriptpath
+    $leaf = Split-Path -Leaf $scriptpath
 
-$root = [System.Collections.ArrayList]::new()
-while($leaf -ne "tests")
-{
-    $scriptpath = (Split-Path -Parent $scriptpath)
-    $leaf = (Split-Path -Leaf $scriptpath)
-    $root.Add($leaf) | Out-Null
+    if($leaf -eq "tests"){
+        break
+    }
+
+    $walker.Add($leaf) | Out-Null
 }
-#don't need this piece
-$root.Remove("tests")
 
-$moduleName = Split-Path (Split-Path $scriptPath -Parent) -Leaf
-$here = Split-Path -Parent $currentPath
+# Split and Replace Hell
+$ModuleRootDirectory = Split-Path $scriptPath -Parent
+$ModuleName = Split-Path (Split-Path $scriptPath -Parent) -Leaf
+$PathFromModuleRoot = ($walker | Sort-Object -Descending) -join "\"
+
+$TestFile = $currentPath
+$TestFileName = Split-Path -Leaf $currentPath
+$TestDirectory = Split-Path -Parent $currentPath
+
 $SourceFileName = (Split-Path -Leaf $currentPath) -replace '\.Tests\.', '.'
-$TestFile = (Split-Path -Leaf $currentPath)
-$here2 = $here -replace 'tests', $moduleName
+$SourceDirectory = $TestDirectory -replace 'tests', $ModuleName
+$SourceFile = Join-Path $SourceDirectory $SourceFileName
 
+# Form the return output
 $output = [PSCustomObject]@{
-    "TestFile"  = $currentPath
-    "SourceFile" = "$here2\$SourceFileName"
-    "Namespace"  = (($root | Sort-Object -Descending) -join "\") + "\" + ($SourceFileName)
-    "ModuleName"    = $moduleName
+    'TestFile' =  $TestFile
+    'TestFileName' = $TestFileName
+    'TestDirectory' = $TestDirectory
+    'ModuleRootDirectory' = $ModuleRootDirectory
+    'ModuleName' = $ModuleName
+    'SourceFile' = $SourceFile
+    'SourceFileName' = $SourceFileName
+    'SourceDirectory' = $SourceDirectory
+    'PathFromModuleRoot' = $PathFromModuleRoot
+    'Namespace' = "$PathFromModuleRoot\$SourceFileName"
+    'ManifestPath' = "$ModuleRootDirectory\$ModuleName\$ModuleName.psm1"
 }
 
-#load that pesky thing
+# Load the Source script
 . $output.SourceFile
 
-Import-Module (Resolve-Path ".\ProfileCaddie\ProfileCaddie.psm1") -Force
+# Import the Module for the Pester Test
+Import-Module $output.ManifestPath -Force
 
 return $output
