@@ -11,7 +11,7 @@ function Remove
 
     if($Id -eq $null -or $Id -eq "")
     {
-        throw ($LocalMessage.MustProvideGistID)
+        throw ($LocalizedData.MustProvideGistID)
     }
 
     $gists = Resolve-UncertainPath "~/.pscaddie/gists.json"

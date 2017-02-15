@@ -15,7 +15,7 @@ function Add
 
     if(!(Test-Path $psCaddie))
     {
-        return ($LocalMessage.ProfileDirectoryNotFound)
+        return ($LocalizedData.ProfileDirectoryNotFound)
     }
 
     $gists = Join-Path $psCaddie "gists.json"

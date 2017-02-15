@@ -15,12 +15,12 @@ function Export
 
     if(!(Test-Path $psCaddie))
     {
-        return ($LocalMessage.ProfileDirectoryNotFound)
+        return ($LocalizedData.ProfileDirectoryNotFound)
     }
 
     if(!(Test-Path $gists))
     {
-        return ($LocalMessage.GistJsonNotFound)
+        return ($LocalizedData.GistJsonNotFound)
     }
 
     Copy-Item -Path $gists -Destination $Path

@@ -19,7 +19,6 @@ function List
 
     if($PsCmdlet.ParameterSetName -eq "File")
     {
-
         if ((Test-Path -Path $Path))
         {
             [System.Array] $list = (Get-Content -Path $Path) | ConvertFrom-Json

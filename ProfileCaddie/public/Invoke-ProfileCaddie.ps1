@@ -55,18 +55,18 @@ function Invoke-ProfileCaddie
         ###############################################################################
 
         # Path
-        [Parameter(Mandatory=$False, ParameterSetName="Import", Position=0)]
+        [Parameter(Mandatory=$True, ParameterSetName="Import", Position=0)]
         [Parameter(Mandatory=$False, ParameterSetName="List", Position=1)]
         [Parameter(Mandatory=$True, ParameterSetName="Export", Position=0)]
         [string] $Path,
 
         # Gist
-        [Parameter(Mandatory=$False, ParameterSetName="Import")]
+        [Parameter(Mandatory=$True, ParameterSetName="Import")]
         [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
         [switch] $Gist,
 
         # File
-        [Parameter(Mandatory=$False, ParameterSetName="Import")]
+        [Parameter(Mandatory=$True, ParameterSetName="Import")]
         [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
         [switch] $File,
 
@@ -86,8 +86,7 @@ function Invoke-ProfileCaddie
     # Remove Switch for ParmameterSetName
     $PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
 
-    Write-Host "test"  -ForegroundColor Cyan
-    Write-Verbose ("Calling '{0}' function with: `n {1}" -f $PsCmdlet.ParameterSetName, ($PSBoundParameters | Out-String ))
+    Write-Verbose ($LocalizedData.SplatFunctionWith -f $PsCmdlet.ParameterSetName, ($PSBoundParameters | Out-String ))
 
     # Call Functon with Bound Parms
     . $PsCmdlet.ParameterSetName @PSBoundParameters

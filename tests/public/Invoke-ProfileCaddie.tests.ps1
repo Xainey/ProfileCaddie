@@ -28,10 +28,10 @@ Describe $pester.Namespace {
                 { Invoke-ProfileCaddie -Add $gist1 } | Should Not Throw
             }
             It "Exports gists.json" {
-                ( Invoke-ProfileCaddie -Export "TestDrive:/exported.json" ) | Should Be $LocalMessage.ProfileDirectoryNotFound
+                ( Invoke-ProfileCaddie -Export "TestDrive:/exported.json" ) | Should Be $LocalizedData.ProfileDirectoryNotFound
 
                 mkdir "TestDrive:\.pscaddie"
-                ( Invoke-ProfileCaddie -Export "TestDrive:/exported.json" ) | Should Be $LocalMessage.GistJsonNotFound
+                ( Invoke-ProfileCaddie -Export "TestDrive:/exported.json" ) | Should Be $LocalizedData.GistJsonNotFound
 
                 Invoke-ProfileCaddie -Init
                 Invoke-ProfileCaddie -Export "TestDrive:\.pscaddie\exported.json"

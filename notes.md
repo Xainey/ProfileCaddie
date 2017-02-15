@@ -83,6 +83,12 @@ $PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
 Could use only switches on Invoke-ProfileCaddie and pipe the remaining arguments positionally using `ValueFromRemainingArguments`
 or possibly using `DynamicParam`.
 
+## Custom Error Handling
+
+Concept Based on Pester's `Set-TestInconclusive.ps1`.
+
+- https://gist.github.com/Xainey/f1b58368b25645b347f92ebc7416a472
+
 ## Custom Help
 
 `Help1.ps1` loads:
@@ -106,7 +112,7 @@ Using these lets me make a minimal list of commands.
 
 - `\en-US\about_ProfileCaddie.help.txt` added for English help.
 - `\en-US\about_ProfileCaddie.help.txt` added for English strings throughout the module.
-    - `ProfileCaddie.psm1` Imports these strings and binds them to `$LocalMessage`
+    - `ProfileCaddie.psm1` Imports these strings and binds them to `$LocalizedData`
 
 ## CI/CD Pipeline
 
