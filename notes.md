@@ -35,7 +35,8 @@ ProfileCaddie/                                  <--- "Repo Root"
 
 1. Run `Invoke-Pester` from project root.
 2. Use common test format in all tests.
-```
+
+```powershell
 $pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
 
 Describe $pester.Namespace {
@@ -71,12 +72,12 @@ Namespace           : private\cli\Export.ps1
 Each function under `/private/cli/` function is given matching a matching `Switch` and `ParameteSetName`.
 The function is dot sourced and the psboundparameters are splat to make the call.
 
-```
-    # Remove Switch for ParmameterSetName
-    $PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
+```powershell
+# Remove Switch for ParmameterSetName
+$PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
 
-    # Call Functon with Bound Parms
-    . $PsCmdlet.ParameterSetName @PSBoundParameters
+# Call Functon with Bound Parms
+. $PsCmdlet.ParameterSetName @PSBoundParameters
 ```
 
 Could use only switches on Invoke-ProfileCaddie and pipe the remaining arguments positionally using `ValueFromRemainingArguments`
@@ -92,7 +93,7 @@ or possibly using `DynamicParam`.
 
 Each function under `/private/cli/` has comment based help for `Synopsis`.
 
-```
+```powershell
 <#
 .Synopsis
     Add a Raw Gist url to ProfileCaddie.
@@ -106,3 +107,37 @@ Using these lets me make a minimal list of commands.
 - `\en-US\about_ProfileCaddie.help.txt` added for English help.
 - `\en-US\about_ProfileCaddie.help.txt` added for English strings throughout the module.
     - `ProfileCaddie.psm1` Imports these strings and binds them to `$LocalMessage`
+
+## CI/CD Pipeline
+
+### Invoke-Build Tasks
+
+- InstallDependencies
+- Init
+    - Setup tasks
+- Clean
+    - Clean old artifacts
+    - Make artifacts folder
+    - Get PSTestReport with git
+- Analyze
+    - Run scriptAnalyzer
+    - Output results to json
+- Test
+    - Run pester
+    - save reults to nunit and json
+    - generate PSTestReport report
+- Archive
+    - Create Zip Archive
+    - Create Nuget Package
+- Publish
+    - Publish using PSDeploy if `!deploy` is in commit message.
+
+### AppVeyor
+
+- Install Nuget
+- Install Invoke-Build
+- Run `Invoke-Build -Task InstallDependencies`
+- Run `Invoke-Build .` Pipeline
+- Publish nunit Test Results to AppVeyor
+- Publish all artifacts
+- `Invoke-Build -Task Publish`  to deploy
