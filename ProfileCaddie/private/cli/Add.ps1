@@ -6,7 +6,7 @@ function Add
 {
     [cmdletbinding()]
     param(
-        [string] $Uri
+        [string] $Path
     )
 
     # if pscaddie/gists.ps1 doesnt exist should init?
@@ -18,13 +18,18 @@ function Add
         return ($LocalizedData.ProfileDirectoryNotFound)
     }
 
-    $gists = Join-Path $psCaddie "gists.json"
+    $Type = Get-UriType -Uri $Path
 
-    [System.Array] $list = List
+    If($Type -eq "Gist")
+    {
+        $gists = Join-Path $psCaddie "gists.json"
 
-    $list += ParseGist $Uri
+        [System.Array] $list = List
 
-    $json = $list | Sort-Object -Property id, sha, file -Unique | ConvertTo-Json
+        $list += ParseGist $Path
 
-    $json | Out-File -FilePath $gists -Force
+        $json = $list | Sort-Object -Property id, sha, file -Unique | ConvertTo-Json
+
+        $json | Out-File -FilePath $gists -Force
+    }
 }

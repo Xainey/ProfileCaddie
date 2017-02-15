@@ -46,9 +46,9 @@ Describe $pester.Namespace {
         Mock Resolve-UncertainPath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
 
         Init
-        Add -Uri $gist1
-        Add -Uri $gist2
-        Add -Uri $gist3
+        Add -Path $gist1
+        Add -Path $gist2
+        Add -Path $gist3
 
         Context "Removing Gists" {
             It "Removes items by id" {

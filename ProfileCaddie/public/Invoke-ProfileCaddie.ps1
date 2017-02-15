@@ -1,12 +1,26 @@
 <#
     .SYNOPSIS
+        ...
 
     .DESCRIPTION
+        ...
 
     .PARAMETER Help
         Show custom Help Docs. For Native help use (Get-Help Invoke-ProfileCaddie).
 
+    .PARAMETER Force
+        ...
+
+    .PARAMETER Path
+        ...
+
+    .PARAMETER Id
+        ...
+
     .EXAMPLE
+        Invoke-ProfileCaddie -Init
+        Invoke-ProfileCaddie -Add "raw gist url"
+        Invoke-ProfileCaddie -Make
 
     .NOTES
 #>
@@ -58,18 +72,15 @@ function Invoke-ProfileCaddie
         [Parameter(Mandatory=$True, ParameterSetName="Import", Position=0)]
         [Parameter(Mandatory=$False, ParameterSetName="List", Position=0)]
         [Parameter(Mandatory=$True, ParameterSetName="Export", Position=0)]
-        [string] $Path,
-
-        # Uri
         [Parameter(Mandatory=$True, ParameterSetName="Add", Position=0)]
-        [string] $Uri,
+        [string] $Path,
 
         # Force
         [Parameter(Mandatory=$False, ParameterSetName="Init", Position=0)]
         [switch] $Force,
 
         # ID
-        [Parameter(Mandatory=$False, ParameterSetName="Remove", Position=0)]
+        [Parameter(Mandatory=$True, ParameterSetName="Remove", Position=0)]
         [string] $Id
     )
 

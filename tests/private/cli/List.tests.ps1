@@ -61,13 +61,13 @@ Describe $pester.Namespace {
             }
             It "Returns the correct single object from the list" {
                 Init -Force
-                Add -Uri $gist1
+                Add -Path $gist1
                 (List | ConvertTo-Json) | Should Be ($localGists[0] | ConvertTo-Json)
             }
             It "Returns the correct multiple objects from the list" {
                 Init -Force
-                Add -Uri $gist1
-                Add -Uri $gist2
+                Add -Path $gist1
+                Add -Path $gist2
                 (List | ConvertTo-Json) | Should Be ($localGists | ConvertTo-Json)
             }
         }

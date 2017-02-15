@@ -30,6 +30,6 @@ function Import
             $uri[$import_piece.name] = $import_piece.value
         }
 
-        Add -Uri (Get-GistUri @uri)
+        Add -Path (Get-GistUri @uri)
     }
 }

@@ -13,17 +13,17 @@ Describe $pester.Namespace {
         Context "Add Gists" {
             It "Returns message if ~./pscaddie does not exist" {
                 Mock Test-Path { return $false } -ParameterFilter { $psCaddie }
-                (Add -Uri $gist1) | Should Be "ProfileCaddie directory does not exist. Run -Init."
+                (Add -Path $gist1) | Should Be "ProfileCaddie directory does not exist. Run -Init."
             }
             It "Should not throw errors" {
-                { Add -Uri $gist1 } | Should Not Throw
+                { Add -Path $gist1 } | Should Not Throw
             }
             It "Should not throw errors for duplicates" {
-                { Add -Uri $gist1 } | Should Not Throw
-                { Add -Uri $gist1 } | Should Not Throw
+                { Add -Path $gist1 } | Should Not Throw
+                { Add -Path $gist1 } | Should Not Throw
             }
             It "Should change from single to multiple" {
-                { Add -Uri $gist2 } | Should Not Throw
+                { Add -Path $gist2 } | Should Not Throw
             }
         }
     }
