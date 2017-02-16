@@ -88,6 +88,8 @@ or possibly using `DynamicParam`.
 Concept Based on Pester's `Set-TestInconclusive.ps1`.
 
 - https://gist.github.com/Xainey/f1b58368b25645b347f92ebc7416a472
+- https://github.com/PoshCode/Configuration/blob/master/Source/Metadata.psm1#L955
+- https://msdn.microsoft.com/en-us/library/system.management.automation.errorcategory(v=vs.85).aspx
 
 ## Custom Help
 
