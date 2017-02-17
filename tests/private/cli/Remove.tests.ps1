@@ -8,7 +8,7 @@ Comparing with JSON in this case is ok
 
 Alternatives:
 (Compare-Object $a $b -IncludeEqual).SideIndicator | Should Be "=="
-foreach($prop in ($a.psobject.properties)){$prop.value | Should Be $b."$($prop.name)"}
+foreach ($prop in ($a.psobject.properties)){$prop.value | Should Be $b."$($prop.name)"}
 
 Other:
 - https://www.powershellgallery.com/packages/Compare-ObjectProperty/1.0.0.0/DisplayScript

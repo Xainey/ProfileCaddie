@@ -112,12 +112,12 @@ function Install-Nuget
     $sourceNugetExe = "http://nuget.org/nuget.exe"
     $powerShellGetDir = "$env:ProgramData\Microsoft\Windows\PowerShell\PowerShellGet"
 
-    if(!(Test-Path -Path $powerShellGetDir))
+    if (!(Test-Path -Path $powerShellGetDir))
     {
         New-Item -ItemType Directory -Path $powerShellGetDir -Force
     }
 
-    if(!(Test-Path -Path "$powerShellGetDir\nuget.exe") -or $Force)
+    if (!(Test-Path -Path "$powerShellGetDir\nuget.exe") -or $Force)
     {
         Invoke-WebRequest $sourceNugetExe -OutFile "$powerShellGetDir\nuget.exe"
     }

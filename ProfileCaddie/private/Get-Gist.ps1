@@ -1,6 +1,6 @@
 function Get-Gist {
     [cmdletbinding()]
-    param(
+    param (
         [Parameter(Mandatory=$True, ParameterSetName="Parse")]
         [string] $Uri,
         [Parameter(Mandatory=$False, ParameterSetName="Parse")]
@@ -13,20 +13,20 @@ function Get-Gist {
         [string] $File
     )
 
-    if($PsCmdlet.ParameterSetName -eq "Link"){
+    if ($PsCmdlet.ParameterSetName -eq "Link") {
         return ("https://gist.githubusercontent.com/{0}/{1}/raw/{2}/{3}" -f $User, $Id, $Sha, $File)
     }
 
     # May want to restrict to only .ps1 Files
     $regex = [regex] "https:\/\/gist.githubusercontent.com\/(\w+)\/([a-f0-9]+)\/raw\/([a-f0-9]{40})\/([^/\n]*)$"
 
-    if (!$regex.IsMatch($Uri)){
-        if($isValid){
+    if (!$regex.IsMatch($Uri)) {
+        if ($isValid) {
             return $false
         }
-            throw "Invalid Gist Uri."
+        throw ($LocalizedData.InvalidGistFormat)
     }
-    elseif($isValid){
+    elseif ($isValid) {
         return $true
     }
 

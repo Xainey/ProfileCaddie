@@ -2,10 +2,9 @@
 .Synopsis
     Export a Copy of gists.json.
 #>
-function Export
-{
+function Export {
     [cmdletbinding()]
-    param(
+    param (
         [string] $Path
     )
 
@@ -13,13 +12,11 @@ function Export
 
     $gists = Join-Path $psCaddie "gists.json"
 
-    if(!(Test-Path $psCaddie))
-    {
+    if (!(Test-Path $psCaddie)) {
         return ($LocalizedData.ProfileDirectoryNotFound)
     }
 
-    if(!(Test-Path $gists))
-    {
+    if (!(Test-Path $gists)) {
         return ($LocalizedData.GistJsonNotFound)
     }
 

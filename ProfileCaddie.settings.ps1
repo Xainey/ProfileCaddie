@@ -16,7 +16,7 @@ param(
 
 Enter-Build {
     # Skip Setup if Installing Dependencies
-    if($BuildTask -eq 'InstallDependencies') { return }
+    if ($BuildTask -eq 'InstallDependencies') { return }
 
     Set-BuildEnvironment
 
@@ -36,12 +36,12 @@ Enter-Build {
         Verbose = @{}
     }
 
-    if($ENV:BHCommitMessage -match "!verbose")
+    if ($ENV:BHCommitMessage -match "!verbose")
     {
         $Settings.Verbose = @{Verbose = $True}
     }
 
-    if($ENV:BHProjectPath)
+    if ($ENV:BHProjectPath)
     {
         $Settings.ProjectRoot = $ENV:BHProjectPath
     }

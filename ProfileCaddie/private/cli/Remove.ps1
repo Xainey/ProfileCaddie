@@ -2,22 +2,19 @@
 .Synopsis
     Remove a Gist from Profile.
 #>
-function Remove
-{
+function Remove {
     [cmdletbinding()]
-    param(
+    param (
         [string] $Id
     )
 
-    if($Id -eq $null -or $Id -eq "")
-    {
+    if ($Id -eq $null -or $Id -eq "") {
         throw ($LocalizedData.MustProvideGistID)
     }
 
     $gists = Resolve-UncertainPath "~/.pscaddie/gists.json"
 
-    if ((Test-Path -Path $gists))
-    {
+    if (Test-Path -Path $gists) {
         [System.Array] $list = (Get-Content -Path $gists) | ConvertFrom-Json
     }
 

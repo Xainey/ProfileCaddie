@@ -34,7 +34,7 @@ task InstallDependencies {
 
 # Synopsis: Clean Artifacts Directory
 task Clean {
-    if(Test-Path -Path $Artifacts)
+    if (Test-Path -Path $Artifacts)
     {
         Remove-Item "$Artifacts/*" -Recurse -Force
     }
@@ -130,7 +130,7 @@ task Archive {
     Set-ModuleFunctions
 
     # Bump the module version from PSGallery
-    if($UseNextPSGalleryVersion)
+    if ($UseNextPSGalleryVersion)
     {
         $Version = Get-NextPSGalleryVersion -Name $env:BHProjectName
         Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $Version
@@ -160,13 +160,13 @@ task Archive {
 
 # Synopsis: Publish to SMB File Share
 task Publish {
-    if(!$ENV:BHProjectName -and $ENV:BHProjectName.Count -ne 1)
+    if (!$ENV:BHProjectName -and $ENV:BHProjectName.Count -ne 1)
     {
         throw '$ENV:BHProjectName not set'
     }
 
     # Credit RamblingCookieMonster: https://github.com/RamblingCookieMonster/PSDepend/blob/fb5cbe8372453d8e355dd63edad3ecd38a8697a3/psake.ps1#L73
-    if(
+    if (
         $ENV:BHBuildSystem -ne 'Unknown' -and
         $ENV:BHBranchName -eq "master" -and
         $ENV:BHCommitMessage -match '!deploy'

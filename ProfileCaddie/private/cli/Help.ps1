@@ -2,8 +2,7 @@
 .Synopsis
     Get the Help.
 #>
-function Help()
-{
+function Help() {
 
 "
  ______             ___ _ _        _______           _     _ _
@@ -18,8 +17,7 @@ function Help()
     $cliCommands = @( Get-ChildItem -Path $PSScriptRoot/*.ps1 -ErrorAction SilentlyContinue )
 
     $cli = @()
-    foreach($flag in $cliCommands)
-    {
+    foreach ($flag in $cliCommands) {
         $name = (Get-ChildItem $flag).BaseName
         $cli += [PSCustomObject]@{
             "Command" = $name

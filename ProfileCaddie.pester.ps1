@@ -9,7 +9,7 @@ while($leaf -ne "tests") {
     $scriptpath = Split-Path -Parent $scriptpath
     $leaf = Split-Path -Leaf $scriptpath
 
-    if($leaf -eq "tests"){
+    if ($leaf -eq "tests") {
         break
     }
 

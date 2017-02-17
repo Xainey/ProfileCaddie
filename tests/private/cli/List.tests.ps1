@@ -8,7 +8,7 @@ Comparing with JSON in this case is ok
 
 Alternatives:
 (Compare-Object $a $b -IncludeEqual).SideIndicator | Should Be "=="
-foreach($prop in ($a.psobject.properties)){$prop.value | Should Be $b."$($prop.name)"}
+foreach ($prop in ($a.psobject.properties)){$prop.value | Should Be $b."$($prop.name)"}
 
 Other:
 - https://www.powershellgallery.com/packages/Compare-ObjectProperty/1.0.0.0/DisplayScript
@@ -56,7 +56,11 @@ Describe $pester.Namespace {
         Mock Resolve-UncertainPath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
 
         Context "Local Json" {
-            It "List should return 0 objects if list is blank or non-existant" {
+            It "List should throw if path does not exist" {
+                { List } | Should Throw
+            }
+            It "List should return 0 objects if list is blank" {
+                Init -Force
                 (List).Count | Should BeExactly 0
             }
             It "Returns the correct single object from the list" {

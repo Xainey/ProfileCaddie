@@ -2,42 +2,38 @@
 .Synopsis
     Create or refresh ProfileCaddie config.
 #>
-function Init
-{
+function Init {
     [cmdletbinding()]
-    param(
+    param (
+        [Parameter(Mandatory=$False)]
         [switch] $Force = $false
     )
 
-    # Creates ~/.pscaddie if it doesnt exist
     $pscaddie = Resolve-UncertainPath "~/.pscaddie"
-    if($Force)
-    {
+    if ($Force) {
         Remove-Item -Path $pscaddie -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
     }
-    if (!(Test-Path -Path $pscaddie))
-    {
+
+    # Creates ~/.pscaddie
+    if (!(Test-Path -Path $pscaddie)) {
         New-Item -Path $pscaddie -ItemType Container | Out-Null
     }
 
-    # Creates ~/.pscaddie/private.ps1 if it doesnt exist
+    # Creates ~/.pscaddie/private.ps1
     $private = Join-Path $pscaddie "private.ps1"
-    if (!(Test-Path -Path $private))
-    {
+    if (!(Test-Path -Path $private)) {
         New-Item -Path $private -ItemType File | Out-Null
     }
 
-    # Creates ~/.pscaddie/gists.json if it doesnt exist
+    # Creates ~/.pscaddie/gists.json
     $gists = Join-Path $pscaddie "gists.json"
-    if (!(Test-Path -Path $gists))
-    {
+    if (!(Test-Path -Path $gists)) {
         New-Item -Path $gists -ItemType File | Out-Null
     }
 
-    # Creates $Profile if it doesnt exist
+    # Creates $Profile
     $profilePath = (Get-ProfilePath -Name CurrentUserCurrentHost)
-    if (!(Test-Path -Path $profilePath))
-    {
+    if (!(Test-Path -Path $profilePath)) {
         New-Item -Path $profilePath -ItemType File | Out-Null
     }
 }

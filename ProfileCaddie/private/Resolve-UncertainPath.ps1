@@ -5,16 +5,15 @@
 .Notes
     Could use: $PSCmdlet.GetUnresolvedProviderPathFromPSPath()
 #>
-function Resolve-UncertainPath
-{
+function Resolve-UncertainPath {
     [cmdletbinding()]
-    param(
+    param (
         [string] $Path
     )
 
     $ResolvedPath = Resolve-Path $Path -ErrorAction SilentlyContinue -ErrorVariable RPError
 
-    if(!$ResolvedPath)
+    if (!$ResolvedPath)
     {
         $ResolvedPath = $RPError[0].TargetObject
     }

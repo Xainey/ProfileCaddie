@@ -25,14 +25,12 @@ Describe $pester.Namespace {
 
         Context "Validate Gist URI" {
             It "Should parse a raw gist URI" {
-                foreach($goodGist in $goodGists.GetEnumerator())
-                {
+                foreach ($goodGist in $goodGists.GetEnumerator()) {
                     { Get-Gist -Uri $goodGist.Value } | Should Not Throw
                 }
             }
             It "Should throw an error if URI is malformed" {
-                foreach($badGist in $badGists.GetEnumerator())
-                {
+                foreach ($badGist in $badGists.GetEnumerator()) {
                     { Get-Gist -Uri $badGist.Value } | Should Throw
                 }
             }

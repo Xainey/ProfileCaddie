@@ -1,25 +1,20 @@
-function Get-UriType
-{
+function Get-UriType {
     [cmdletbinding()]
-    param(
+    param (
         [string] $Uri
     )
 
-    if ([uri]::IsWellFormedUriString($Uri, "Absolute"))
-    {
-        if (Get-Gist -Uri $Uri -isValid)
-        {
+    if ([uri]::IsWellFormedUriString($Uri, "Absolute")) {
+        if (Get-Gist -Uri $Uri -isValid) {
             return "Gist"
         }
         return "URI"
     }
-    elseif([bool]([uri]$Path).IsUnc)
-    {
+    elseif ([bool]([uri]$Path).IsUnc) {
         return "UNC"
     }
 
-    elseif(Test-Path -Path $Path -IsValid)
-    {
+    elseif (Test-Path -Path $Path -IsValid) {
         return "File"
     }
 

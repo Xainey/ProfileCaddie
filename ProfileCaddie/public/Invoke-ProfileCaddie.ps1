@@ -27,7 +27,7 @@
 function Invoke-ProfileCaddie
 {
     [cmdletbinding(DefaultParameterSetName="Help")]
-    param(
+    param (
         ###############################################################################
         # CLI Command Flags
         ###############################################################################

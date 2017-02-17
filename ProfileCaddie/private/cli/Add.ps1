@@ -2,26 +2,21 @@
 .Synopsis
     Add a Raw Gist url to ProfileCaddie.
 #>
-function Add
-{
+function Add {
     [cmdletbinding()]
-    param(
+    param (
         [string] $Path
     )
 
-    # if pscaddie/gists.ps1 doesnt exist should init?
-
     $psCaddie = Resolve-UncertainPath "~/.pscaddie"
 
-    if(!(Test-Path $psCaddie))
-    {
+    if (!(Test-Path $psCaddie)) {
         return ($LocalizedData.ProfileDirectoryNotFound)
     }
 
-    $Type = Get-UriType -Uri $Path
+    $type = Get-UriType -Uri $Path
 
-    If($Type -eq "Gist")
-    {
+    if ($type -eq "Gist") {
         $gists = Join-Path $psCaddie "gists.json"
 
         [System.Array] $list = List

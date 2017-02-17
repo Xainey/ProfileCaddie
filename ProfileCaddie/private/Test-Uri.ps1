@@ -1,14 +1,13 @@
-function Verify-URI
-{
+function Verify-URI {
     [cmdletbinding()]
-    param(
+    param (
         [string] $Uri,
         [string] $Type
     )
 
     $AllowedUris = @("URI", "Gist")
 
-    if($Type -in $AllowedUris) {
+    if ($Type -in $AllowedUris) {
         $parms = @{
             UseBasicParsing = $True
             DisableKeepAlive = $True
@@ -23,21 +22,21 @@ function Verify-URI
         }
     }
 
-    elseif($Type -eq "UNC") {
+    elseif ($Type -eq "UNC") {
         $server = ([uri] $Uri).Host
         $status = (Test-Connection -ComputerName $server -ErrorAction SilentlyContinue -Count 1).StatusCode
 
-        if($status -ne 0) {
+        if ($status -ne 0) {
             return $false
         }
 
-        if(Test-Path -Path $Uri) {
+        if (Test-Path -Path $Uri) {
            return $true
         }
     }
 
-    elseif($Type -eq "File") {
-        if(Test-Path -Path $Uri) {
+    elseif ($Type -eq "File") {
+        if (Test-Path -Path $Uri) {
            return $true
         }
     }
