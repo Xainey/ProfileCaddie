@@ -5,6 +5,7 @@
 function Export {
     [cmdletbinding()]
     param (
+        [Parameter(Mandatory=$True, Position=0)]
         [string] $Path
     )
 
@@ -13,11 +14,11 @@ function Export {
     $gists = Join-Path $psCaddie "gists.json"
 
     if (!(Test-Path $psCaddie)) {
-        return ($LocalizedData.ProfileDirectoryNotFound)
+        throw ($LocalizedData.ProfileDirectoryNotFound)
     }
 
     if (!(Test-Path $gists)) {
-        return ($LocalizedData.GistJsonNotFound)
+        throw ($LocalizedData.GistJsonNotFound)
     }
 
     Copy-Item -Path $gists -Destination $Path

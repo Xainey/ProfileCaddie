@@ -5,6 +5,7 @@
 function Add {
     [cmdletbinding()]
     param (
+        [Parameter(Mandatory=$True, Position=0)]
         [string] $Path
     )
 
@@ -28,6 +29,6 @@ function Add {
         $json | Out-File -FilePath $gists -Force
     }
     else {
-        throw "Type not Supported"
+        throw ($LocalizedData.TypeNotImplemented -f $type)
     }
 }

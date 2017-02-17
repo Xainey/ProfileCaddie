@@ -8,15 +8,16 @@
 function Resolve-UncertainPath {
     [cmdletbinding()]
     param (
+        [Parameter(Mandatory=$True, Position=0)]
         [string] $Path
     )
 
-    $ResolvedPath = Resolve-Path $Path -ErrorAction SilentlyContinue -ErrorVariable RPError
+    $resolvedPath = Resolve-Path $Path -ErrorAction SilentlyContinue -ErrorVariable rpError
 
-    if (!$ResolvedPath)
+    if (!$resolvedPath)
     {
-        $ResolvedPath = $RPError[0].TargetObject
+        $resolvedPath = $rpError[0].TargetObject
     }
 
-    return $ResolvedPath
+    return $resolvedPath
 }

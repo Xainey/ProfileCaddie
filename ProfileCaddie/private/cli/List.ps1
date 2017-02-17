@@ -15,7 +15,7 @@ function List {
         if (Test-Path -Path $Path) {
             [System.Array] $list = (Get-Content -Path $Path) | ConvertFrom-Json
         } else {
-            throw "TODO:List at $Path does not exist."
+            throw ($LocalizedData.ListDoesNotExist -f $Path)
         }
     } else {
         $testUri = Get-Gist -Uri $Path

@@ -5,20 +5,34 @@
 function Remove {
     [cmdletbinding()]
     param (
-        [string] $Id
-    )
+        [Parameter(Mandatory=$True, Position=0)]
+        [string] $Id,
 
-    if ($Id -eq $null -or $Id -eq "") {
-        throw ($LocalizedData.MustProvideGistID)
-    }
+        [Parameter(Mandatory=$False, Position=1)]
+        [string] $Sha,
+
+        [Parameter(Mandatory=$False, Position=2)]
+        [string] $File
+    )
 
     $gists = Resolve-UncertainPath "~/.pscaddie/gists.json"
 
-    if (Test-Path -Path $gists) {
-        [System.Array] $list = (Get-Content -Path $gists) | ConvertFrom-Json
+    [System.Array] $list = List
+
+    $filtered = $list | Sort-Object -Property id, sha, file -Unique | Where-Object { $_.id -ne $id }
+
+    if ($Sha) {
+        $filtered = $filtered | Where-Object { $_.sha -ne $Sha }
     }
 
-    $json = $list | Sort-Object -Property id, sha -Unique | Where-Object { $_.id -ne $id } | ConvertTo-Json
+    if ($File) {
+        $filtered = $filtered | Where-Object { $_.file -ne $File }
+    }
 
-    $json | Out-File -FilePath $gists -Force
+    if (($filtered | Sort-Object | Get-Unique).Count -gt 1) {
+        Write-Host $filtered
+        throw "Multiple matches please use sha and/or file arguments."
+    }
+
+    $filtered | ConvertTo-Json | Out-File -FilePath $gists -Force
 }

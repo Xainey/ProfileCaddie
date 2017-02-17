@@ -45,7 +45,7 @@ Describe $pester.Namespace {
         Mock Resolve-UncertainPath { return $pscaddie } -ParameterFilter { $Path -eq "~/.pscaddie" }
         Mock Resolve-UncertainPath { return $pscaddieGists } -ParameterFilter { $Path -eq "~/.pscaddie/gists.json" }
 
-        Init
+        Init -Force
         Add -Path $gist1
         Add -Path $gist2
         Add -Path $gist3

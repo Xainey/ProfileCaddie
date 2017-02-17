@@ -1,6 +1,7 @@
 function Get-UriType {
     [cmdletbinding()]
     param (
+        [Parameter(Mandatory=$True, Position=0)]
         [string] $Uri
     )
 
@@ -10,11 +11,11 @@ function Get-UriType {
         }
         return [UriType]::URI
     }
-    elseif ([bool]([uri]$Path).IsUnc) {
+    elseif ([bool]([uri]$Uri).IsUnc) {
         return [UriType]::UNC
     }
 
-    elseif (Test-Path -Path $Path -IsValid) {
+    elseif (Test-Path -Path $Uri -IsValid) {
         return [UriType]::File
     }
 

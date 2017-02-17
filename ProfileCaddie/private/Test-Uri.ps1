@@ -1,7 +1,9 @@
 function Test-Uri {
     [cmdletbinding()]
     param (
+        [Parameter(Mandatory=$True, Position=0)]
         [string] $Uri,
+        [Parameter(Mandatory=$True, Position=1)]
         [string] $Type
     )
 

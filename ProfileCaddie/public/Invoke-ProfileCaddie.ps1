@@ -81,8 +81,15 @@ function Invoke-ProfileCaddie
 
         # ID
         [Parameter(Mandatory=$True, ParameterSetName="Remove", Position=0)]
-        [ValidateNotNullorEmpty()]
-        [string] $Id
+        [string] $Id,
+
+        # Sha
+        [Parameter(Mandatory=$False, ParameterSetName="Remove", Position=1)]
+        [string] $Sha,
+
+        # File
+        [Parameter(Mandatory=$False, ParameterSetName="Remove", Position=2)]
+        [string] $File
     )
 
     # Remove Switch for ParmameterSetName
