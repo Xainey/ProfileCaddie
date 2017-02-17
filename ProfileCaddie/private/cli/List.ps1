@@ -21,7 +21,7 @@ function List
     }
     else
     {
-        $testUri = ParseGist -Uri $Path
+        $testUri = Get-Gist -Uri $Path
         Write-Verbose $testUri
         $content = (Invoke-WebRequest $Path).Content
         [System.Array] $list = $content | ConvertFrom-Json

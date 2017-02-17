@@ -7,14 +7,12 @@ function Get-UriType
 
     if ([uri]::IsWellFormedUriString($Uri, "Absolute"))
     {
-        if (ParseGist -Uri $Uri -Test)
+        if (Get-Gist -Uri $Uri -isValid)
         {
             return "Gist"
         }
-
         return "URI"
     }
-
     elseif([bool]([uri]$Path).IsUnc)
     {
         return "UNC"

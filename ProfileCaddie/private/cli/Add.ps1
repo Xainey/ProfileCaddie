@@ -26,7 +26,7 @@ function Add
 
         [System.Array] $list = List
 
-        $list += ParseGist $Path
+        $list += Get-Gist -Uri $Path
 
         $json = $list | Sort-Object -Property id, sha, file -Unique | ConvertTo-Json
 

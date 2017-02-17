@@ -14,7 +14,7 @@ function Make
     # Collect all Raw gists and make file
     foreach($item in List)
     {
-        $uri = Get-GistUri -user $item.user -id $item.id -sha $item.sha -file $item.file
+        $uri = Get-Gist -user $item.user -id $item.id -sha $item.sha -file $item.file
         $Output += "# Source: $uri`n"
         $Output += (Invoke-WebRequest $uri).Content
         $Output += "`n`n"
