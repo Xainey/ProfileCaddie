@@ -28,7 +28,7 @@ function Make
     {
         $userProfile = $marker
         $userProfile += "`n"
-        $userProfile += '$ProfileCaddie = "~/.pscaddie/profile.ps1"; if(Test-Path(Resolve-Path $ProfileCaddie -ErrorAction SilentlyContinue)){. $ProfileCaddie}'
+        $userProfile += '$ProfileCaddie = "~/.pscaddie/profile.ps1"; if(Test-Path $ProfileCaddie -ErrorAction SilentlyContinue){. $ProfileCaddie}else{"ProfileCaddie Config Missing"}'
         $userProfile += "`n`n"
         $userProfile += (Get-Content $profilePath | Out-String)
         $userProfile | Out-File -FilePath $profilePath -Force

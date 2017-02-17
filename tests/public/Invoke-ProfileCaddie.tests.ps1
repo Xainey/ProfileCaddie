@@ -56,7 +56,7 @@ Describe $pester.Namespace {
                 { Invoke-ProfileCaddie -Make } | Should Not Throw
             }
             It "Removes a gist" {
-                # { Invoke-ProfileCaddie -Remove } | Should Throw
+                { Invoke-ProfileCaddie -Remove } | Should Throw
             }
         }
     }

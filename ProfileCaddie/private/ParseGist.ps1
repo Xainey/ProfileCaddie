@@ -2,7 +2,8 @@ function ParseGist
 {
     [cmdletbinding()]
     param(
-        [string] $Uri
+        [string] $Uri,
+        [switch] $Test
     )
 
     # May want to restrict to only .ps1 Files
@@ -10,7 +11,14 @@ function ParseGist
 
     if (!$regex.IsMatch($Uri))
     {
+        if($Test){
+            return $false
+        }
+
         throw "Invalid Gist Uri."
+    }
+    elseif($Test){
+        return $true
     }
 
     $matches = $regex.Match($Uri)

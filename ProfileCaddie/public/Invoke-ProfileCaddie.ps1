@@ -81,6 +81,7 @@ function Invoke-ProfileCaddie
 
         # ID
         [Parameter(Mandatory=$True, ParameterSetName="Remove", Position=0)]
+        [ValidateNotNullorEmpty()]
         [string] $Id
     )
 
@@ -90,5 +91,5 @@ function Invoke-ProfileCaddie
     Write-Verbose ($LocalizedData.SplatFunctionWith -f $PsCmdlet.ParameterSetName, ($PSBoundParameters | Out-String ))
 
     # Call Functon with Bound Parms
-    . $PsCmdlet.ParameterSetName @PSBoundParameters
+    & $PsCmdlet.ParameterSetName @PSBoundParameters
 }

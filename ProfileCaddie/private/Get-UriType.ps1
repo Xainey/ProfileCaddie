@@ -5,12 +5,9 @@ function Get-UriType
         [string] $Uri
     )
 
-    # May want to restrict to only .ps1 Files
-    $gist = [regex] 'https:\/\/gist.githubusercontent.com\/(\w+)\/([a-f0-9]+)\/raw\/([a-f0-9]{40})\/([^/\n]*)$'
-
     if ([uri]::IsWellFormedUriString($Uri, "Absolute"))
     {
-        if ($gist.IsMatch($Uri))
+        if (ParseGist -Uri $Uri -Test)
         {
             return "Gist"
         }

@@ -1,6 +1,7 @@
 # ProfileCaddie
 
-[![badges](https://img.shields.io/badge/code%20style-OTBS-brightgreen.svg?style=flat)](https://github.com/PoshCode/PowerShellPracticeAndStyle)
+[![CodeStyle](https://img.shields.io/badge/code%20style-OTBS-brightgreen.svg?style=flat)](https://github.com/PoshCode/PowerShellPracticeAndStyle)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Xainey/ProfileCaddie/blob/master/LICENSE)
 
 Simple tool to help manage and share useful snippits, functions, and aliases for `$Profile`
 
