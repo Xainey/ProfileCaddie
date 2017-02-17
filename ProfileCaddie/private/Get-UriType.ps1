@@ -6,17 +6,17 @@ function Get-UriType {
 
     if ([uri]::IsWellFormedUriString($Uri, "Absolute")) {
         if (Get-Gist -Uri $Uri -isValid) {
-            return "Gist"
+            return [UriType]::Gist
         }
-        return "URI"
+        return [UriType]::URI
     }
     elseif ([bool]([uri]$Path).IsUnc) {
-        return "UNC"
+        return [UriType]::UNC
     }
 
     elseif (Test-Path -Path $Path -IsValid) {
-        return "File"
+        return [UriType]::File
     }
 
-    return "Unknown"
+    return [UriType]::Unknown
 }

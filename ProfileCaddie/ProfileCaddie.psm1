@@ -12,3 +12,15 @@ foreach ($import in @($Public + $Private)) {
 }
 
 Export-ModuleMember -Function $Public.Basename
+
+# Try using custom types or enums if supporting only v5
+Add-Type -TypeDefinition @"
+    public enum UriType
+    {
+        Gist,
+        URI,
+        UNC,
+        File,
+        Unknown
+    }
+"@

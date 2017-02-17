@@ -11,7 +11,7 @@ function List {
 
     $Type = Get-UriType -Uri $Path
 
-    if ($Type -eq "File") {
+    if ($Type -eq [UriType]::File) {
         if (Test-Path -Path $Path) {
             [System.Array] $list = (Get-Content -Path $Path) | ConvertFrom-Json
         } else {

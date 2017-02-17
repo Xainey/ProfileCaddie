@@ -71,7 +71,7 @@ Invoke-Caddie -List
 
 ```
     # Load Profile Caddie Generated Profile
-    # $PScaddie = "~/.pscaddie/profile.ps1"; if (Test-Path(Resolve-Path $PScaddie -ErrorAction SilentlyContinue)){. $PScaddie}
+    # $PScaddie = "~/.pscaddie/profile.ps1"; if(Test-Path(Resolve-Path $PScaddie -ErrorAction SilentlyContinue)){. $PScaddie}
 
     https://developer.github.com/v3/gists/
     Allow multiple?

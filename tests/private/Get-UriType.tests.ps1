@@ -3,7 +3,9 @@ $pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.
 Describe $pester.Namespace {
     InModuleScope $pester.ModuleName {
         Context "Get-UriType" {
+            It "..." {
 
+            }
         }
     }
 }

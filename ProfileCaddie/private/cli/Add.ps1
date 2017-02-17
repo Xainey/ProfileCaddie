@@ -16,7 +16,7 @@ function Add {
 
     $type = Get-UriType -Uri $Path
 
-    if ($type -eq "Gist") {
+    if ($type -eq [UriType]::Gist) {
         $gists = Join-Path $psCaddie "gists.json"
 
         [System.Array] $list = List
@@ -26,5 +26,8 @@ function Add {
         $json = $list | Sort-Object -Property id, sha, file -Unique | ConvertTo-Json
 
         $json | Out-File -FilePath $gists -Force
+    }
+    else {
+        throw "Type not Supported"
     }
 }

@@ -1,11 +1,11 @@
-function Verify-URI {
+function Test-Uri {
     [cmdletbinding()]
     param (
         [string] $Uri,
         [string] $Type
     )
 
-    $AllowedUris = @("URI", "Gist")
+    $AllowedUris = @([UriType]::URI, [UriType]::Gist)
 
     if ($Type -in $AllowedUris) {
         $parms = @{
@@ -22,7 +22,7 @@ function Verify-URI {
         }
     }
 
-    elseif ($Type -eq "UNC") {
+    elseif ($Type -eq [UriType]::UNC) {
         $server = ([uri] $Uri).Host
         $status = (Test-Connection -ComputerName $server -ErrorAction SilentlyContinue -Count 1).StatusCode
 
@@ -35,7 +35,7 @@ function Verify-URI {
         }
     }
 
-    elseif ($Type -eq "File") {
+    elseif ($Type -eq [UriType]::File) {
         if (Test-Path -Path $Uri) {
            return $true
         }
