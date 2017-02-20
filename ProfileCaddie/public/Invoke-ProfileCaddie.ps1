@@ -95,7 +95,7 @@ function Invoke-ProfileCaddie
     # Remove Switch for ParmameterSetName
     $PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
 
-    Write-Verbose ($LocalizedData.SplatFunctionWith -f $PsCmdlet.ParameterSetName, ($PSBoundParameters | Out-String ))
+    Write-Debug ($LocalizedData.SplatFunctionWith -f $PsCmdlet.ParameterSetName, ($PSBoundParameters | Out-String ))
 
     # Call Functon with Bound Parms
     & $PsCmdlet.ParameterSetName @PSBoundParameters

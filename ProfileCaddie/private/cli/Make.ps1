@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Generate a new ProfileCaddie Profile.ps1 and inject it into $Profile.
+    Generate a new ~/.pscaddie/Profile.ps1 and inject it into $Profile.
 #>
 function Make {
     $psCaddie = Resolve-UncertainPath "~/.pscaddie"

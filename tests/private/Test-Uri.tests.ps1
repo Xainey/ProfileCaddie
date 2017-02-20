@@ -3,8 +3,10 @@ $pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.
 Describe $pester.Namespace {
     InModuleScope $pester.ModuleName {
         Context "Test-Uri" {
-            It "..." {
-
+            It "Tests Gist URIs" {
+                Mock Invoke-WebRequest { return @{statuscode = 200} } -Verifiable
+                (Test-Uri -Uri "gisturl" -Type ([UriType]::Gist)) | Should Be $true
+                Assert-VerifiableMocks
             }
         }
     }

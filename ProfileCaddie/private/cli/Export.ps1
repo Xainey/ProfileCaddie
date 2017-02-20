@@ -1,6 +1,8 @@
 <#
 .Synopsis
     Export a Copy of gists.json.
+.Notes
+    Only supports gists. Should Expand to support multiple types.
 #>
 function Export {
     [cmdletbinding()]

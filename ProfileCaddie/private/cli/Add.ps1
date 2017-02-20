@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Add a Raw Gist url to ProfileCaddie.
+    Add a Raw Gist URL to ProfileCaddie.
 #>
 function Add {
     [cmdletbinding()]
@@ -16,6 +16,8 @@ function Add {
     }
 
     $type = Get-UriType -Uri $Path
+
+    Write-Verbose ($LocalizedData.GetUriType -f $type)
 
     if ($type -eq [UriType]::Gist) {
         $gists = Join-Path $psCaddie "gists.json"

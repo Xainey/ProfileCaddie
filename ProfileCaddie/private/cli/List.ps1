@@ -9,17 +9,24 @@ function List {
         [string] $Path = (Resolve-UncertainPath "~/.pscaddie/gists.json")
     )
 
-    $Type = Get-UriType -Uri $Path
+    $type = Get-UriType -Uri $Path
 
-    if ($Type -eq [UriType]::File) {
+    Write-Verbose ($LocalizedData.GetUriType -f $type)
+
+    if ($type -eq [UriType]::File) {
+        Write-Verbose ($LocalizedData.LoadListFromFile -f $Path)
         if (Test-Path -Path $Path) {
             [System.Array] $list = (Get-Content -Path $Path) | ConvertFrom-Json
         } else {
             throw ($LocalizedData.ListDoesNotExist -f $Path)
         }
     } else {
-        $testUri = Get-Gist -Uri $Path
-        Write-Verbose $testUri
+        Write-Verbose ($LocalizedData.LoadListFromUri -f $Path)
+
+        if (!(Test-Uri -Type $type -Uri $Path)) {
+            throw ($LocalizedData.BadResponseFromUri -f $Path)
+        }
+
         $content = (Invoke-WebRequest $Path).Content
         [System.Array] $list = $content | ConvertFrom-Json
     }
