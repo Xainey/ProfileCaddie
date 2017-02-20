@@ -11,8 +11,6 @@ function List {
 
     $type = Get-UriType -Uri $Path
 
-    Write-Verbose ($LocalizedData.GetUriType -f $type)
-
     if ($type -eq [UriType]::File) {
         Write-Verbose ($LocalizedData.LoadListFromFile -f $Path)
         if (Test-Path -Path $Path) {

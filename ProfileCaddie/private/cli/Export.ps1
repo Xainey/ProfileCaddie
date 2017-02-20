@@ -13,11 +13,11 @@ function Export {
 
     $psCaddie = Resolve-UncertainPath "~/.pscaddie"
 
-    $gists = Join-Path $psCaddie "gists.json"
-
     if (!(Test-Path $psCaddie)) {
         throw ($LocalizedData.ProfileDirectoryNotFound)
     }
+
+    $gists = Join-Path $psCaddie "gists.json"
 
     if (!(Test-Path $gists)) {
         throw ($LocalizedData.GistJsonNotFound)

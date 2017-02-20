@@ -9,9 +9,12 @@ ConvertFrom-StringData @'
     ListDoesNotExist = ProfileCaddy list at does not exist at the given path: {0}.
     GetUriType = Uri Type is: {0}.
     InitWithForce = Force enabled. Cleaning ~/.pscaddie directory.
-    CreatingDirectory = Creating new Directory: {0}.
-    CreatingFile = Creating new File: {0}.
+    CreatingDirectory = Creating Directory: {0}.
+    CreatingFile = Creating File: {0}.
     LoadListFromFile = Loading List from file: {0}.
     LoadListFromUri = Loading List from URI: {0}.
     BadResponseFromUri = "Could not connect to URI: {0}.
+    FetchingGist = Fetching Gist: {0}.
+    AddProfileCaddieMarker = Adding Profile Caddie Marker to $Profile.
+    MultipleGistsFound = Multiple matches for Gist ID please use SHA and/or File arguments.
 '@

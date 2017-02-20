@@ -28,6 +28,7 @@ function Add {
 
         $json = $list | Sort-Object -Property id, sha, file -Unique | ConvertTo-Json
 
+        Write-Verbose ($LocalizedData.CreatingFile -f $gists)
         $json | Out-File -FilePath $gists -Force
     }
     else {

@@ -15,24 +15,30 @@ function Remove {
         [string] $File
     )
 
-    $gists = Resolve-UncertainPath "~/.pscaddie/gists.json"
+    $psCaddie = Resolve-UncertainPath "~/.pscaddie"
 
-    [System.Array] $list = List
+    if (!(Test-Path $psCaddie)) {
+        return ($LocalizedData.ProfileDirectoryNotFound)
+    }
 
-    $filtered = $list | Sort-Object -Property id, sha, file -Unique | Where-Object { $_.id -ne $id }
+    $gists = Join-Path $psCaddie "gists.json"
+
+    [System.Array] $list = (List | Sort-Object -Property id, sha, file -Unique)
+
+    $filtered = $list.Where({$_.id -eq $Id})
 
     if ($Sha) {
-        $filtered = $filtered | Where-Object { $_.sha -ne $Sha }
+        $filtered = $filtered.Where({$_.sha -eq $Sha})
     }
 
     if ($File) {
-        $filtered = $filtered | Where-Object { $_.file -ne $File }
+        $filtered = $filtered.Where({$_.file -eq $File})
     }
 
-    if (($filtered | Sort-Object | Get-Unique).Count -gt 1) {
-        Write-Host $filtered
-        throw "Multiple matches please use sha and/or file arguments."
+    if ($filtered.Count -gt 1) {
+        throw ($LocalizedData.MultipleGistsFound)
     }
 
-    $filtered | ConvertTo-Json | Out-File -FilePath $gists -Force
+    Write-Verbose ($LocalizedData.CreatingFile -f $gists)
+    $list.Where({$_ -notin $filtered}) | ConvertTo-Json | Out-File -FilePath $gists -Force
 }
