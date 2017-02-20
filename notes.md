@@ -77,7 +77,7 @@ The function is dot sourced and the psboundparameters are splat to make the call
 $PSBoundParameters.Remove($PsCmdlet.ParameterSetName) | Out-Null
 
 # Call Functon with Bound Parms
-. $PsCmdlet.ParameterSetName @PSBoundParameters
+& $PsCmdlet.ParameterSetName @PSBoundParameters
 ```
 
 Could use only switches on Invoke-ProfileCaddie and pipe the remaining arguments positionally using `ValueFromRemainingArguments`

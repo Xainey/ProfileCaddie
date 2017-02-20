@@ -12,6 +12,7 @@ foreach ($import in @($Public + $Private)) {
 }
 
 Export-ModuleMember -Function $Public.Basename
+Export-ModuleMember -Alias caddie
 
 # Try using custom types or enums if supporting only v5
 Add-Type -TypeDefinition @"

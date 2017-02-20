@@ -9,23 +9,29 @@
         Show custom Help Docs. For Native help use (Get-Help Invoke-ProfileCaddie).
 
     .PARAMETER Force
-        ...
+        Force delete any existing files in Profile Caddie folder.
 
     .PARAMETER Path
-        ...
+        Path to a URI.
 
     .PARAMETER Id
-        ...
+        Id Part of raw gist.
+
+    .PARAMETER Sha
+        Sha Part of raw gist.
+
+    .PARAMETER File
+        File Part of raw gist.
 
     .EXAMPLE
         Invoke-ProfileCaddie -Init
         Invoke-ProfileCaddie -Add "raw gist url"
         Invoke-ProfileCaddie -Make
 
-    .NOTES
 #>
 function Invoke-ProfileCaddie
 {
+    [Alias("caddie")]
     [cmdletbinding(DefaultParameterSetName="Help")]
     param (
         ###############################################################################
