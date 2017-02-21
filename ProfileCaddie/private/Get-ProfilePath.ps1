@@ -14,8 +14,8 @@ function Get-ProfilePath {
     )
 
     if ($Name -eq $null -or $Name -eq "") {
-        return $global:profile | Select-Object AllUsersAllHosts, AllUsersCurrentHost, CurrentUserAllHosts, CurrentUserCurrentHost
+        return $profile | Select-Object AllUsersAllHosts, AllUsersCurrentHost, CurrentUserAllHosts, CurrentUserCurrentHost
     }
 
-    return $global:profile."$Name"
+    return $profile."$Name"
 }
