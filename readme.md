@@ -1,5 +1,6 @@
 # ProfileCaddie
 
+[![Build status](https://ci.appveyor.com/api/projects/status/q8mysdmgcw7i9yry/branch/master?svg=true)](https://ci.appveyor.com/project/Xainey/profilecaddie/branch/master)
 [![CodeStyle](https://img.shields.io/badge/code%20style-OTBS-brightgreen.svg?style=flat)](https://github.com/PoshCode/PowerShellPracticeAndStyle)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Xainey/ProfileCaddie/blob/master/LICENSE)
 
