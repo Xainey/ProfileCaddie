@@ -55,8 +55,8 @@ task Clean {
 
     # Temp
     $PSTestReportGit = "https://github.com/Xainey/PSTestReport.git"
-    $PSTestReportDir = "./PSTestReport"
-    if ( (-not (Test-Path -Path $PSTestReportDir)) )
+    $PSTestReportDir = Resolve-Path "./PSTestReport"
+    if (-not (Test-Path -Path $PSTestReportDir))
     {
         & git @('clone',$PSTestReportGit, $PSTestReportDir) 2>&1 | % { $_.ToString() }
     }
