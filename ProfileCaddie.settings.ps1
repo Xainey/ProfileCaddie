@@ -1,19 +1,6 @@
 ###############################################################################
-# Customize these properties and tasks
-###############################################################################
-param(
-    $Artifacts = './artifacts',
-    $ModuleName = 'ProfileCaddie',
-    $ModulePath = './ProfileCaddie',
-    $BuildNumber = $env:BUILD_NUMBER,
-    $UseNextPSGalleryVersion = $false,
-    $PercentCompliance  = '0'
-)
-
-###############################################################################
 # Static settings -- no reason to include these in the param block
 ###############################################################################
-
 Enter-Build {
     # Skip Setup if Installing Dependencies
     if ($BuildTask -eq 'InstallDependencies') { return }

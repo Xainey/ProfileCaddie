@@ -1,3 +1,16 @@
+###############################################################################
+# Customize these properties and tasks when calling Invoke-Build
+###############################################################################
+param(
+    $Artifacts = './artifacts',
+    $ModuleName = 'ProfileCaddie',
+    $ModulePath = './ProfileCaddie',
+    $BuildNumber = $env:BUILD_NUMBER,
+    $UseNextPSGalleryVersion = $false,
+    $PercentCompliance  = '0'
+)
+
+
 # Include: Settings
 . './ProfileCaddie.settings.ps1'
 
