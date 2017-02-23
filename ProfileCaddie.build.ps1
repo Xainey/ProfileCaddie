@@ -10,7 +10,6 @@ param(
     $PercentCompliance  = '0'
 )
 
-
 # Include: Settings
 . './ProfileCaddie.settings.ps1'
 
@@ -59,11 +58,11 @@ task Clean {
     $PSTestReportDir = "./PSTestReport"
     if ( (-not (Test-Path -Path $PSTestReportDir)) )
     {
-        & git @('clone',$PSTestReportGit, $PSTestReportDir)
+        & git @('clone',$PSTestReportGit, $PSTestReportDir) 2>&1 | % { $_.ToString() }
     }
     else
     {
-        & git @('-C',$PSTestReportDir,'pull')
+        & git @('-C',$PSTestReportDir,'pull') 2>&1 | % { $_.ToString() }
     }
 }
 
