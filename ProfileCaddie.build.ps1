@@ -58,11 +58,11 @@ task Clean {
     $PSTestReportDir = Join-Path (Resolve-Path .) "PSTestReport"
     if (-not (Test-Path -Path $PSTestReportDir))
     {
-        & git @('clone',$PSTestReportGit, $PSTestReportDir) | Out-Null
+        & git @('clone',$PSTestReportGit, $PSTestReportDir, '-q')
     }
     else
     {
-        & git @('-C',$PSTestReportDir,'pull') | Out-Null
+        & git @('-C',$PSTestReportDir,'pull', '-q')
     }
 }
 
