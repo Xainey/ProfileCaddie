@@ -1,6 +1,5 @@
 # Design Notes
 
-
 ## Project Structure
 
 ```dart

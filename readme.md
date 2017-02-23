@@ -7,6 +7,10 @@ Simple tool to help manage and share useful snippits, functions, and aliases for
 
 Note: Currently only supports Github Gists.
 
+**WARNING**:
+
+- Opening this up early to get ideas, feedback, and advice.
+
 ## Native Help
 
 ```powershell
@@ -20,13 +24,13 @@ Get-Help Invoke-ProfileCaddie
 
 The following commands use `Invoke-Caddie` or the alias `caddie`.
 
-`-Help` : Shows Custom Help
+**-Help** : Shows Custom Help
 
 ```powershell
 Invoke-Caddie -Help
 ```
 
-`-Init` : Scaffold Files
+**-Init** : Scaffold Files
 
 ```powershell
 # Create ~/.pscaddie/
@@ -36,13 +40,13 @@ Invoke-Caddie -Init
 Invoke-Caddie -Init -Force
 ```
 
-`-Add` : Add a raw Gist URL
+**-Add** : Add a raw Gist URL
 
 ```powershell
 Invoke-Caddie -Add "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/touch.ps1"
 ```
 
-`-Remove` : Remove a gist by ID
+**-Remove** : Remove a gist by ID
 
 ```powershell
 Invoke-Caddie -Remove "bc4e497435b440f6699a4f778c89a0c5"
@@ -51,25 +55,25 @@ Invoke-Caddie -Remove "bc4e497435b440f6699a4f778c89a0c5"
 Invoke-Caddie -Remove "bc4e497435b440f6699a4f778c89a0c5" -Sha "cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68" -File "touch.ps1"
 ```
 
-`-Make` : Builds `Profile.ps1` from `Custom.ps1` and `Gists.json` / Inserts marker in `$Profile`
+**-Make** : Builds `Profile.ps1` from `Custom.ps1` and `Gists.json` / Inserts marker in `$Profile`
 
 ```powershell
 Invoke-Caddie -Make
 ```
 
-`-Import` : Imports a list of ProfileCaddie gists from a JSON formatted gist.
+**-Import** : Imports a list of ProfileCaddie gists from a JSON formatted gist.
 
 ```powershell
 Invoke-Caddie -Import "https://gist.githubusercontent.com/Xainey/bc4e497435b440f6699a4f778c89a0c5/raw/cfbd2f458bbec19ba62e7b721bb0cf092e5f9a68/pscaddie.json"
 ```
 
-`-Export` : Exports (Copies) ~/.pscaddie/gists.json to specified location.
+**-Export** : Exports (Copies) ~/.pscaddie/gists.json to specified location.
 
 ```powershell
 Invoke-Caddie -Export "C:\Temp\CopyOfGists.ps1"
 ```
 
-`-List` : Lists all of the gists in your ~/.pscaddie/gists.json
+**-List** : Lists all of the gists in your ~/.pscaddie/gists.json
 
 ```powershell
 Invoke-Caddie -List
