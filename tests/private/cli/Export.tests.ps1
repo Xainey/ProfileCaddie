@@ -1,5 +1,5 @@
-$pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
-Import-Module $pester.ManifestPath -Force
+$script:pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
+#Import-Module $pester.ManifestPath -Force
 Describe $pester.Namespace {
     InModuleScope $pester.ModuleName {
         Context "Basic Export" {
@@ -7,8 +7,8 @@ Describe $pester.Namespace {
                 Mock Resolve-UncertainPath { return "TestDrive:/.pscaddie" } -ParameterFilter { $Path -eq "~/.pscaddie" }
                 Mock Copy-Item {} -Verifiable
                 Init
-                (Get-Command Init) | Out-Host
                 Export -Path "./gists.json"
+                (Get-Command -Module ProfileCaddie) | Out-Host
                 Assert-VerifiableMocks
             }
         }
