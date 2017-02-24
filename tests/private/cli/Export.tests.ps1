@@ -1,4 +1,4 @@
-$pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
+$pester = . (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
 $pester | Out-Host
 Describe $pester.Namespace {
     InModuleScope $pester.ModuleName {
