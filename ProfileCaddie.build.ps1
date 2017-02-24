@@ -92,6 +92,7 @@ task Analyze {
 # Synopsis: Test the project with Pester. Publish Test and Coverage Reports
 task RunTests {
     $invokePesterParams = @{
+        Path = (Join-Path $Settings.ProjectRoot 'tests')
         OutputFile =  (Join-Path $Artifacts "TestResults.xml")
         OutputFormat = 'NUnitXml'
         Strict = $true

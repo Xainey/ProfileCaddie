@@ -1,5 +1,5 @@
-$script:pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
-#Import-Module $pester.ManifestPath -Force
+$pester = & (Resolve-Path ".\ProfileCaddie.Pester.ps1") $MyInvocation.MyCommand.Path
+(Get-Command -Module ProfileCaddie) | Out-Host
 Describe $pester.Namespace {
     InModuleScope $pester.ModuleName {
         Context "Basic Export" {
