@@ -38,7 +38,7 @@ task InstallDependencies {
     # Install-Nuget
 
     Install-Module -Name DscResourceTestHelper -Force
-    Install-Module -Name Pester -Force
+    Install-Module -Name Pester -RequiredVersion 3.4.2 -Force
     Install-Module -Name PSScriptAnalyzer -Force
     Install-Module -Name PSDeploy -Force
     Install-Module -Name BuildHelpers -Force
