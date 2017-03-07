@@ -26,6 +26,17 @@ ProfileCaddie/                                  <--- "Repo Root"
 └── ProfileCaddie.settings.ps1                  <--- "Settings/Hooks for Invoke-Build"
 ```
 
+## TODO: Update to use Noun-Verbs instead of router function
+
+Help:    Get-Help ProfileCaddie
+List:    Get-CaddieGist
+Add:     Add-CaddieGist
+Remove:  Remove-CaddieGist
+Export:  Export-Caddie
+Import:  Import-Caddie
+Make:    Set-Caddie / Install-Caddie / Write-Caddie
+Init:    Initialize-Caddie / New-Caddie
+
 ## Tests/Source should have matching file structures
 
 - https://xainey.github.io/2017/powershell-module-pipeline/#example-3-strict-pattern
